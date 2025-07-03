@@ -1,0 +1,44 @@
+<div class="tab-selector-container">
+  <div class="tab-selector">
+    <div
+      class="tab"
+      (click)="onClicked(0)"
+      [ngClass]="{ selected: selectedTab === 0, active: selectedTab > 0 }"
+    >
+      Parts
+    </div>
+    <div
+      class="tab"
+      (click)='onClicked(1)'
+      [ngClass]="{
+        selected: selectedTab === 1 || selectedTab === 2,
+        active: selectedTab != 1 && selectedTab != 2 && !disablePcrTab,
+        inactive: selectedTab != 1 && selectedTab != 2 && disablePcrTab
+      }"
+    >
+      PCR
+    </div>
+    <div
+      class="tab"
+      (click)="onClicked(3)"
+      [ngClass]="{
+        selected: selectedTab === 3,
+        active: selectedTab != 3 && !disableOverviewTab,
+        inactive: selectedTab != 3 && disableOverviewTab
+      }"
+    >
+      Overview
+    </div>
+    <div
+      class="tab"
+      (click)="onClicked(4)"
+      [ngClass]="{
+        selected: selectedTab === 4,
+        active: selectedTab != 4 && !disableNotesTab,
+        inactive: selectedTab != 4 && disableNotesTab
+      }"
+    >
+      Notes
+    </div>
+  </div>
+</div>
