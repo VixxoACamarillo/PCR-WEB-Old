@@ -1,0 +1,14 @@
+<div class="alert-container">
+  <div class="message">
+    <div class="text">
+      <span>{{ header }}:</span> {{ message }}
+    </div>
+
+    <div *ngIf="isInteractive" class="cta">
+      <a (click)="ctaClicked()">
+        {{ getCtaText() }}
+        <app-icon class="icon" iconName="{{ getIconName() }}"></app-icon>
+      </a>
+    </div>
+  </div>
+</div>
