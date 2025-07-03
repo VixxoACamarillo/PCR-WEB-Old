@@ -1,0 +1,27 @@
+{
+  "dest": "src/assets/images/",
+  "shape": {
+    "id": {
+      "generator": "svg-%s"
+    },
+    "transform": ["svgo"]
+  },
+  "svg": {
+    "xmlDeclaration": false,
+    "doctypeDeclaration": false
+  },
+  "mode": {
+    "inline": true,
+    "symbol": {
+      "dest": "./svg-sprite",
+      "prefix": "@mixin %s",
+      "dimensions": "-dimensions",
+      "sprite": "svg-sprite.svg",
+      "render": {
+        "scss": {
+          "dest": "_svg-sprite"
+        }
+      }
+    }
+  }
+}

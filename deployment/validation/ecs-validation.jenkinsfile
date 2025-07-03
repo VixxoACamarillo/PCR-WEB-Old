@@ -1,0 +1,66 @@
+node{
+    try{
+        stage('Setup'){
+            parallel(
+                pcr: {
+                    git credentialsId: 'jenkinssvc_ssh_azure_repos', url: 'git@ssh.dev.azure.com:v3/Vixxo/Technology/pcr-web', branch: 'dev'
+                },
+                toolshedSetup:{
+                    sh 'mkdir toolshed'
+                    dir('toolshed'){
+                        git credentialsId: 'jenkinssvc_ssh_azure_repos', url: 'git@ssh.dev.azure.com:v3/Vixxo/Technology/vixxo-cicd-tools'
+                    }
+                }
+            )
+        }
+
+        stage("Build"){
+            sh """eval sudo \$(sudo aws ecr get-login --no-include-email --region us-east-1)
+            sudo mv deployment/build/dockerfile Dockerfile
+            sudo mv deployment/build/docker-compose.yaml docker-compose.yaml
+            sudo mv deployment/build/filebeat.yml filebeat.yml
+            sudo mv deployment/build/filebeat.keystore filebeat.keystore
+            sudo docker build --network host --no-cache=true -t pcr-web .
+            sudo docker tag pcr-web:latest 486679109303.dkr.ecr.us-east-1.amazonaws.com/pcr-web:val${BUILD_NUMBER}
+            sudo docker push 486679109303.dkr.ecr.us-east-1.amazonaws.com/pcr-web:val${BUILD_NUMBER}
+            sudo docker tag pcr-web:latest 486679109303.dkr.ecr.us-east-1.amazonaws.com/pcr-web:latest
+            sudo docker push 486679109303.dkr.ecr.us-east-1.amazonaws.com/pcr-web:latest"""
+        }
+
+        stage('Tagging Build'){
+            sh '''
+                git config --global user.email ''
+                git config --global user.name 'jenkinssvc'
+            '''
+            sh "git tag jb${BUILD_NUMBER}"
+            sshagent (credentials: ['jenkinssvc_ssh_azure_repos']) {
+                sh "git push origin jb${BUILD_NUMBER}"
+            }
+        }
+
+        stage('FOSSA Scan') {
+            triggerRemoteJob job: 'FOSSA-Repository-Scan', parameters: "buildTag=jb${BUILD_NUMBER}\ntargetRepository=pcr-web", remoteJenkinsName: 'IntegrationJenkins', useCrumbCache: true, useJobInfoCache: true, enhancedLogging: true
+        }
+
+        stage('Deploy'){
+            dir('toolshed/EcsUpdating'){
+                sh "sudo npm install"
+                sh "sudo node index.js pcr-web-val-td val${BUILD_NUMBER} pcr-web vixxo-enterprise-staging"
+            }
+            dir('toolshed/EcsCleanUp'){
+                sh "npm install"
+                sh "node index.js pcr-web-val-td"
+            }
+        }
+    }
+    catch(Exception ex){
+        currentBuild.result = 'FAILURE'
+    }
+    finally{
+        cleanWs()
+        sh "sudo docker rmi pcr-web:latest"
+        sh "sudo docker rmi 486679109303.dkr.ecr.us-east-1.amazonaws.com/pcr-web:val${BUILD_NUMBER}"
+        sh "sudo docker rmi 486679109303.dkr.ecr.us-east-1.amazonaws.com/pcr-web:latest"
+        sh "sudo docker system prune -f"
+    }
+}

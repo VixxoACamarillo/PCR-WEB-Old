@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    appVersion: pcr-web
+    build_date: "BUILD_DATE"
+    environment: validation
+    appRepo: pcr-web
+  name: pcr-web
+  namespace: pcr
+spec:
+  selector:
+    matchLabels:
+      app: pcr-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: pcr-web
+      name: pcr
+    spec:
+      containers:
+      - image: vixxo.azurecr.io/pcr-web:valBUILD_NUMBER
+        imagePullPolicy: IfNotPresent
+        name: pcr-web
+        envFrom:
+        - configMapRef:
+            name: pcr-configmap
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 25
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 25
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: vixxo-azure-registry
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+

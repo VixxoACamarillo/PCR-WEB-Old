@@ -1,0 +1,10 @@
+{
+  "ecsLogConfig": {
+    "enable": true,
+    "filename": "var/log/vixxo/node.log",
+    "maxLogSize": 10485760,
+    "level": "info",
+    "datePattern": "YYYY-MM-DD",
+    "type": "file"
+  }
+}

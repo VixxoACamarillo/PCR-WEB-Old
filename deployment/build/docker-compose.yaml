@@ -1,0 +1,8 @@
+pcr-web:
+    build: .
+    restart: always
+    tty: true
+    environment:
+      - VIXXO_ENV=validation
+    ports:
+      - "80:80"

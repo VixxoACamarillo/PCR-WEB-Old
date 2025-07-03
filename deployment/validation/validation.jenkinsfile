@@ -1,0 +1,52 @@
+node{
+    try{
+        stage('Setup'){
+			git credentialsId: 'jenkinssvc_ssh_azure_repos', url: 'git@ssh.dev.azure.com:v3/Vixxo/Technology/pcr-web', branch: 'dev'
+        }
+
+        stage('Build'){
+                sh "sudo mv deployment/build/dockerfile Dockerfile"
+                sh "sudo mv deployment/build/filebeat.yml filebeat.yml"
+                sh "sudo mv deployment/build/filebeat.keystore filebeat.keystore"
+                sh "sudo docker build --force-rm --network host --build-arg environment=validation --no-cache=true -t vixxo.azurecr.io/pcr-web:val${env.BUILD_NUMBER} ."
+                withCredentials([azureServicePrincipal('azure-container-registry-user')]) {
+                sh "sudo docker login vixxo.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET"
+                sh "sudo docker push vixxo.azurecr.io/pcr-web:val${env.BUILD_NUMBER}"
+			}
+		}
+
+        stage('Tagging Build'){
+            sh '''
+                git config --global user.email ''
+                git config --global user.name 'jenkinssvc'
+            '''
+            sh "git tag jb${BUILD_NUMBER}"
+            sshagent (credentials: ['jenkinssvc_ssh_azure_repos']) {
+                sh "git push origin jb${BUILD_NUMBER}"
+            }
+        }
+
+        stage('FOSSA Scan') {
+            triggerRemoteJob job: 'FOSSA-Repository-Scan', parameters: "buildTag=jb${BUILD_NUMBER}\ntargetRepository=pcr-web", remoteJenkinsName: 'IntegrationJenkins', useCrumbCache: true, useJobInfoCache: true, enhancedLogging: true
+        }
+
+        stage('Deploy'){
+            withCredentials([file(credentialsId: 'vixxo_validation_cluster_jenkins_sa', variable: 'KUBECONFIG')]) {
+                    sh "sed -i \"s/BUILD_DATE/`date +%s`/g\" deployment/validation/pcr-deploy.yaml"
+                    sh "sed -i \"s/BUILD_NUMBER/\${BUILD_NUMBER}/g\" deployment/validation/pcr-deploy.yaml"
+
+                    sh "export KUBECONFIG=$KUBECONFIG ; kubectl apply -f deployment/ -n pcr"
+                    sh "export KUBECONFIG=$KUBECONFIG ; kubectl apply -f deployment/validation -n pcr"
+                    sh "export KUBECONFIG=$KUBECONFIG ; kubectl rollout status deployment pcr-web -n pcr -w --timeout 5m"
+			}
+		}
+    }
+    catch(Exception ex){
+        currentBuild.result = 'FAILURE'
+    }
+    finally{
+        cleanWs()
+        sh "sudo docker rmi vixxo.azurecr.io/pcr-web:val${BUILD_NUMBER}"
+        sh "sudo docker system prune -f"
+    }
+}

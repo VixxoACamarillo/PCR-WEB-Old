@@ -1,0 +1,32 @@
+node{
+    try{
+        cleanWs()
+        def lastBuildNumber = Jenkins.instance.getItem('PCR-ECS-Validation').lastSuccessfulBuild.number
+
+        stage('Setup'){
+            toolshedSetup:{
+                sh 'mkdir toolshed'
+                dir('toolshed'){
+                    git credentialsId: 'jenkinssvc_ssh_azure_repos', url: 'git@ssh.dev.azure.com:v3/Vixxo/Technology/vixxo-cicd-tools'
+                }
+            }
+        }
+
+        stage('Deploy'){
+            dir('toolshed/EcsUpdating'){
+                sh "sudo npm install"
+                sh "sudo node index.js pcr-web-production-td val${lastBuildNumber} pcr-web vixxo-enterprise-production" 
+            }
+            dir('toolshed/EcsCleanUp'){
+                sh "npm install"
+                sh "node index.js pcr-web-production-td"
+            }
+        }
+    }
+    catch(Exception ex){
+        currentBuild.result = 'FAILURE'
+    }
+    finally{
+        cleanWs()
+    }
+}

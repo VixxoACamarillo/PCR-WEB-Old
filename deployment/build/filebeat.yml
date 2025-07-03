@@ -1,0 +1,35 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/vixxo/node.log.*
+  json.keys_under_root: true
+  json.add_error_key: true
+
+
+name: 'pcr_web_${VIXXO_ENV:staging}'
+tags: ["pcr-web", "node-tier"]
+
+setup.template.settings:
+  index.number_of_shards: 1
+fields:
+  environment: '${VIXXO_ENV:staging}'
+  application: "PCR Web"
+
+setup.dashboards.enabled: false
+setup.template.name: "pcr-web"
+setup.template.pattern: "pcr-web"
+
+setup.ilm.enabled: false
+
+output.elasticsearch.index: "pcr-web"
+
+logging:
+  files:
+    rotateeverybytes: 10485760
+
+monitoring.enabled: false
+
+cloud.id: "${ES_CLOUDID}"
+cloud.auth: "${ES_PWD}"
+

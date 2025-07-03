@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    appVersion: pcr-web
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: pcr-ingress
+  namespace: pcr
+spec:
+  rules:
+  - host: pcr.vixxolink.com
+    http:
+      paths:    
+      - path: /
+        backend:
+          serviceName: pcr-service
+          servicePort: 80
+  tls:
+  - hosts:
+    - pcr.vixxolink.com
+    secretName: vixxolink-wildcard
+status:
+  loadBalancer:
+    ingress:
+    - {}

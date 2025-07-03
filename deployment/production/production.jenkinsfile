@@ -1,0 +1,35 @@
+node{
+    try{
+	
+         stage('Setup'){
+			git credentialsId: 'jenkinssvc_ssh_azure_repos', url: 'git@ssh.dev.azure.com:v3/Vixxo/Technology/pcr-web', branch: 'master'
+         }
+ 
+        stage('Build'){
+                sh "sudo mv deployment/build/dockerfile Dockerfile"
+                sh "sudo mv deployment/build/filebeat.yml filebeat.yml"
+                sh "sudo mv deployment/build/filebeat.keystore filebeat.keystore"
+                sh "sudo docker build --force-rm --network host --build-arg environment=production --no-cache=true -t vixxo.azurecr.io/pcr-web:prd${env.BUILD_NUMBER} ."
+                withCredentials([azureServicePrincipal('azure-container-registry-user')]) {
+                sh "sudo docker login vixxo.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET"
+                sh "sudo docker push vixxo.azurecr.io/pcr-web:prd${env.BUILD_NUMBER}"
+			}
+		}
+
+         stage('Deploy'){
+             withCredentials([file(credentialsId: 'enterprise-api-east-cluster-jenkins-sa', variable: 'KUBECONFIG')]) {
+                     sh "sed -i \"s/BUILD_DATE/`date +%s`/g\" deployment/production/pcr-deploy.yaml"
+                     sh "sed -i \"s/BUILD_NUMBER/\${BUILD_NUMBER}/g\" deployment/production/pcr-deploy.yaml"
+                     
+                     sh "export KUBECONFIG=$KUBECONFIG ; kubectl apply -f deployment/ -n pcr"
+                     sh "export KUBECONFIG=$KUBECONFIG ; kubectl apply -f deployment/production -n pcr"
+			}
+		}
+    }
+    catch(Exception ex){
+        currentBuild.result = 'FAILURE'
+    }
+    finally{
+        cleanWs()
+    }
+}

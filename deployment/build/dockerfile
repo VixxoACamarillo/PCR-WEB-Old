@@ -1,0 +1,27 @@
+FROM node:14.21.3
+
+
+RUN apt-get update
+
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.6.1-amd64.deb && dpkg -i filebeat-8.6.1-amd64.deb
+
+RUN apt-get -y update && \
+        apt-get -y install filebeat
+
+COPY ./filebeat.yml /etc/filebeat/filebeat.yml
+COPY ./filebeat.keystore /var/lib/filebeat/filebeat.keystore
+RUN chmod 600 /etc/filebeat/filebeat.yml
+RUN chmod 600 /var/lib/filebeat/filebeat.keystore
+
+RUN mkdir /var/log/vixxo/
+RUN mkdir /pcr-web
+COPY . /pcr-web
+
+WORKDIR /pcr-web
+RUN npm install
+RUN npm run prebuild
+RUN npm run build-prod
+EXPOSE 80       
+
+CMD /etc/init.d/filebeat start && \
+    npm run start:deploy

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    appVersion: pcr-web
+  name: pcr-configmap
+data:
+  NODE_ENV: production
+  NODE_PORT: "80"
+  GOOGLE_MAPS_KEY: AIzaSyCEL1V9PVKRvJmHklKD1ljFPpNrkp5ywcQ
+  ORIGIN: https://validationpcr.vixxolink.com
+  VIXXO_API_KEY: HaWLQ1sj451fKA5gewrxu4ByDkk7DTzR4MlYQUiv
+  VIXXO_API_URL: https://validation-api.vixxo.com/v2
+  VIXXO_ENV: validation
+  VIXXO_LINK_API_URL: https://validation-api.vixxolink.com/latest
+  VIXXO_S3_BUCKET: https://s3.amazonaws.com/biz-myfsn-attachments-invoice-test/
+  B2C_TOKEN_URL: https://vixxob2cdev.b2clogin.com/vixxob2cdev.onmicrosoft.com/B2C_1A_ROPC-VIXXOLINK-VALIDATION/oauth2/v2.0/token
+  B2C_GRANT_TYPE: password
+  B2C_CLIENT_ID: 88feb6d0-ef92-4e3a-87b5-91092350a6ef
+  B2C_AUDIENCE: https://validation-api.vixxo.com/
+  B2C_USERNAME: sctest@vixxo.com
+  B2C_PASSWORD: i9xB5QTFZiH5
+  B2C_RESPONSE_TYPE: token

@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJ2aXh4by5henVyZWNyLmlvIjp7InVzZXJuYW1lIjoiZmQ5MjIzZmUtYTQ1MC00MDlkLWJiYmEtYWY3MjAxMTk3M2Y1IiwicGFzc3dvcmQiOiI9VVpFR01YNGkuSXg1MDBdXTkwTDQqams9b01xRCpFSCIsImVtYWlsIjoia2V2aW4ucHJ1bmVyQHZpeHhvLmNvbSIsImF1dGgiOiJabVE1TWpJelptVXRZVFExTUMwME1EbGtMV0ppWW1FdFlXWTNNakF4TVRrM00yWTFPajFWV2tWSFRWZzBhUzVKZURVd01GMWRPVEJNTkNwcWF6MXZUWEZFS2tWSSJ9fX0=
+kind: Secret
+metadata:
+  name: vixxo-azure-registry
+  namespace: pcr
+type: kubernetes.io/dockerconfigjson
