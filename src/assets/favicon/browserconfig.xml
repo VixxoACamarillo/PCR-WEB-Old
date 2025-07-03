@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="https://vixxolink-cdn.s3.amazonaws.com/assets/favicon/mstile-150x150.png?v=RyMq0p9W74"/>
+            <TileColor>#788536</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon / Hamburger Close</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="29 13.7121429 27.2878571 12 20.5 18.7878571 13.7121429 12 12 13.7121429 18.7878571 20.5 12 27.2878571 13.7121429 29 20.5 22.2121429 27.2878571 29 29 27.2878571 22.2121429 20.5"></polygon>
+    </defs>
+    <g id="Icon-/-Hamburger-Close" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Shape" fill="#000000" xlink:href="#path-1"></use>
+        <g id="Colors-/-Stone" mask="url(#mask-2)" fill="#829191">
+            <polygon points="0 0 40 0 40 40 0 40"></polygon>
+        </g>
+    </g>
+</svg>

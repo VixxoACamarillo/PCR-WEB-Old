@@ -1,0 +1,36 @@
+// Grid inside Dialog specific
+.vixxo-grid-empty-dialog {
+  .k-grid-content {
+    overflow-y: hidden;
+    .k-grid-norecords {
+      td {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .k-grid-content {
+    table.k-grid-table {
+      tr.k-grid-norecords {
+        td {
+          display: inline-flex;
+        }
+      }
+    }
+  }
+
+  // Grid inside Dialog specific on small resolution
+  .vixxo-grid-empty-dialog {
+    .k-grid-content {
+      table.k-grid-table {
+        tr.k-grid-norecords {
+          td {
+            height: calc(40vh) !important;
+          }
+        }
+      }
+    }
+  }
+}

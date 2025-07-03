@@ -1,0 +1,59 @@
+/**
+  Priority Colors
+ */
+
+.card-status-indicator {
+  .status-indicator {
+    &.P1,
+    &.C,
+    &.Critical {
+      background-color: #e10000;
+    }
+    &.P2,
+    &.H,
+    &.High {
+      background-color: #ffc800;
+    }
+    &.P3,
+    &.P3N,
+    &.N,
+    &.M,
+    &.Medium {
+      background-color: #3278ff;
+    }
+    &.VH,
+    &.U,
+    &.M,
+    &.PM,
+    &.LE,
+    &.E,
+    &.P4 {
+      background-color: #9628eb;
+    }
+  }
+}
+
+.priority-color-1 {
+  background-color: $priority-color-1;
+}
+.priority-color-2 {
+  background-color: $priority-color-2;
+}
+.priority-color-3 {
+  background-color: $priority-color-3;
+}
+.priority-color-4 {
+  background-color: $priority-color-4;
+}
+.priority-color-5 {
+  background-color: $priority-color-5;
+}
+.priority-color-6 {
+  background-color: $priority-color-6;
+}
+.priority-color-pm {
+  background-color: $priority-color-pm;
+}
+.priority-color-project {
+  background-color: $priority-color-project;
+}

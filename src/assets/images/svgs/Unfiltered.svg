@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon / Filter / Unfiltered</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Filters" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Jobs-Table-Filter-5" transform="translate(-678.000000, -89.000000)" fill="#829191">
+            <g id="Group" transform="translate(673.000000, 80.000000)">
+                <g id="Icon-/-Filter-/-Unfiltered" transform="translate(6.000000, 10.000000)">
+                    <polygon id="Triangle-Copy-59" points="13 6 10 2 16 2"></polygon>
+                    <path d="M3.99994499,3.88423529 L1.45416722,0.941176471 L6.54572277,0.941176471 L3.99994499,3.88423529 Z M7.96216722,0.280941176 C7.8910561,0.110117647 7.73150055,0 7.55550055,0 L0.444389438,0 C0.268389438,0 0.108833883,0.110117647 0.0377227716,0.280941176 C-0.0333883395,0.451764706 -0.00227722835,0.650823529 0.116833883,0.788705882 L3.55550055,4.76376471 L3.55550055,8 L4.44438944,8 L4.44438944,4.76376471 L7.8830561,0.788705882 C8.00216722,0.650823529 8.03327833,0.451764706 7.96216722,0.280941176 Z" id="Fill-1" stroke="#829191" stroke-width="0.5"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,275 @@
+// Kendo UI Customized Options
+// ---------------------------------------------------------------------
+// Overview: http://www.telerik.com/kendo-angular-ui/components/styling/theme-default/customization/
+// ---------------------------------------------------------------------
+// Default values commented out below. Uncomment and edit as needed.
+// ---------------------------------------------------------------------
+
+// Options
+// $enable-rounded: true;
+$enable-shadows: false;
+$enable-gradients: false;
+// $enable-transitions: true;
+
+// Fonts
+$font-size: $f5; // Base font size across all components.
+// $font-family: inherit;  // Font family across all components.
+// $font-family-monospace:  Consolas, "Ubuntu Mono", "Lucida Console", "Courier New", monospace; // Font family for monospaced text. Used for styling the code.
+// $font-size-xs: 10px;
+// $font-size-sm: 12px;
+// $font-size-lg: 19px;
+$line-height: (20 / 15); // Line height used along with $font-size.
+// $line-height-sm: 1.2;
+// $line-height-lg: 1.5;
+// $line-height-em: $line-height * 1em;
+
+// Metrics
+// $spacer: 1em;
+// $spacer-x: $spacer;
+// $spacer-y: $spacer;
+// $padding-x: 8px;
+// $padding-y: 4px;
+// $padding-x-sm: $padding-x / 2;
+// $padding-y-sm: $padding-y / 2;
+// $padding-x-lg: $padding-x * 1.5;
+// $padding-y-lg: $padding-y * 1.5;
+$border-radius: 0; // Border radius for all components.
+// $border-radius-sm: 1px;
+// $border-radius-lg: 4px;
+// $panel-padding-x: $padding-x;
+// $panel-padding-y: $padding-y;
+// $popup-padding-x: 0;
+// $popup-padding-y: 0;
+// $header-padding-x: $padding-x;
+// $header-padding-y: $padding-y * 2;
+// $form-line-height: $line-height;
+// $form-line-height-em: $form-line-height * 1em;
+// $button-border-width: 1px;
+// $button-padding-x: $padding-x;
+// $button-padding-y: $padding-y;
+// $button-padding-x-sm: $button-padding-x / 2;
+// $button-padding-y-sm: $button-padding-y / 2;
+// $button-calc-size: #{$form-line-height-em} + #{$button-padding-y * 2} + 2px;
+// $button-inner-calc-size: #{$form-line-height-em} + #{$button-padding-y * 2};
+$input-border-width: 0;
+// $input-padding-x: $padding-x;
+// $input-padding-y: $padding-y;
+// $input-padding-x-sm: $input-padding-x / 2;
+// $input-padding-y-sm: $input-padding-y / 2;
+// $input-calc-size: #{$form-line-height-em} + #{$input-padding-y * 2} + 2px;
+// $input-inner-calc-size: #{$form-line-height-em} + #{$input-padding-y * 2};
+// $toolbar-padding-x: $padding-x; // The horizontal padding of the container.
+// $toolbar-padding-y: $padding-x; // The vertical padding of the container.
+// $toolbar-calc-size: #{$button-calc-size} + #{$toolbar-padding-y * 2} + 2px;
+// $toolbar-inner-calc-size: #{$button-calc-size} + #{$toolbar-padding-y * 2};
+// $list-item-padding-x: $padding-x;
+// $list-item-padding-y: $padding-y;
+// $nav-item-margin: 2px;
+// $nav-item-padding-x: $padding-x-lg;
+// $nav-item-padding-y: $padding-y-lg;
+// $cell-padding-x: 12px;
+// $cell-padding-y: 8px;
+// $cell-padding: 8px;
+$window-inner-padding-x: 0;
+$window-inner-padding-y: 0;
+$window-titlebar-padding-x: 0;
+$window-titlebar-padding-y: 0;
+// $progressbar-height: 22px;
+// $zindex-popup: 1;
+// $zindex-window: 2;
+// $rgba-transparent: rgba( 0, 0, 0, 0 );
+
+// Theme colors
+$accent: $color-vixxo-primary; // The color that focuses the user attention. Used for primary buttons and for elements of primary importance across the theme.
+// $accent-contrast: contrast-wcag( $accent ); // The color used along with the accent color denoted by $accent. Used to provide contrast between the background and foreground colors.
+$text-color: $color-default-text;
+// $bg-color: #ffffff;
+// $border-color: rgba( black, .08 );
+// $base-text: #656565;                                // The text color of the components' chrome area.
+// $base-bg: #f6f6f6;                                  // The background of the components' chrome area.
+// $base-border: rgba( black, .08 );                   // The border color of the components' chrome area.
+$base-gradient: none; // The gradient background of the components' chrome area.
+// $hovered-text: #656565;                             // The text color of hovered items.
+// $hovered-bg: #ededed;                               // The background of hovered items.
+// $hovered-border: rgba( black, .15 );                // The border color of hovered items.
+$hovered-gradient: none; // The gradient background of hovered items.
+$selected-bg: $color-text-highlight; // The background of selected items.
+// $selected-text: contrast-wcag( $selected-bg );      // The text color of selected items.
+// $selected-border: rgba( black, .1 );                // The border color of selected items.
+$selected-gradient: none; // The gradient background of selected items.
+// $selected-hover-color: $selected-text;
+// $selected-hover-bg: mix( $selected-bg, black, 92);
+$focused-shadow: none;
+// $transition: background-color .2s ease;
+// $error: #f31700;                                    // The color for error messages and states.
+// $warning: #ffc000;                                  // The color for warning messages and states.
+// $success: #37b400;                                  // The color for success messages and states.
+// $info: #0058e9;                                     // The color for informational messages and states.
+// $invalid-border: rgba($error, .5);
+// $gradient-transparent-to-black: rgba( black, 0), black;
+// $gradient-transparent-to-white: rgba( white, 0), white;
+// $gradient-black-to-transparent: black, rgba( black, 0);
+// $gradient-white-to-transparent: white, rgba( white, 0);
+// $gradient-rainbow: #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000;
+
+// Widget
+// $widget-text: $text-color;
+// $widget-bg: $bg-color;
+// $widget-border: rgba( black, .08 );
+
+// Panel
+// $panel-text: $widget-text;
+// $panel-bg: $widget-bg;
+// $panel-border: rgba( black, .08 );
+
+// Popup
+// $popup-text: $base-text;
+$popup-bg: $color-default-background;
+// $popup-border: $base-border;
+$popup-shadow: 0 2px 4px 0 $color-container-shadow;
+
+// Header
+// $header-text: $base-text;
+// $header-bg: $base-bg;
+// $header-border: $base-border;
+$header-gradient: none;
+// $header-hovered-text: $hovered-text;
+// $header-hovered-bg: $hovered-bg;
+// $header-hovered-border: $hovered-border;
+$header-hovered-gradient: none;
+// $header-selected-text: $selected-text;
+$header-selected-bg: $selected-bg;
+// $header-selected-border: $selected-border;
+$header-selected-gradient: none;
+
+// Button
+$button-text: $color-button-text; // The text color of the buttons.
+$button-bg: $color-button-background; // The background of the buttons.
+$button-border: $color-button-border; // The border color of the buttons.
+$button-gradient: none; // The background gradient of the buttons.
+$button-shadow: none; // The shadow of the buttons.
+$button-hovered-text: $color-button-text-hover; // The text color of hovered buttons.
+$button-hovered-bg: $color-button-background-hover; // The background of hovered buttons.
+$button-hovered-border: $color-button-border-hover; // The border color of hovered buttons.
+$button-hovered-gradient: none; // The background gradient of hovered buttons.
+$button-hovered-shadow: none; // The shadow of hovered buttons.
+$button-pressed-text: $color-button-text-hover; // The text color of pressed buttons.
+$button-pressed-bg: $color-button-background-hover; // The background color of pressed buttons.
+$button-pressed-border: $color-button-border-hover; // The border color of pressed buttons.
+$button-pressed-gradient: none; // The background gradient of pressed buttons.
+$button-pressed-shadow: none; // The shadow of pressed buttons.
+$button-focused-shadow: none; // The shadow of focused buttons.
+
+// Primary button
+$primary-button-text: $color-button-primary-text;
+$primary-button-bg: $color-button-primary-background;
+$primary-button-border: $color-button-primary-border;
+$primary-button-gradient: none;
+$primary-button-hovered-text: $color-button-text-hover;
+$primary-button-hovered-bg: $color-button-background-hover;
+$primary-button-hovered-border: $color-button-border-hover;
+$primary-button-hovered-gradient: none;
+$primary-button-pressed-text: $color-button-text-hover;
+$primary-button-pressed-bg: $color-button-background-hover;
+$primary-button-pressed-border: $color-button-border-hover;
+$primary-button-pressed-gradient: none;
+$primary-button-pressed-shadow: none;
+$primary-button-focused-shadow: none;
+
+// Toolbar
+// $toolbar-text: $button-text;
+// $toolbar-bg: $button-bg;
+// $toolbar-border: $button-border;
+$toolbar-gradient: none;
+
+// Input
+// $input-text: $panel-text;
+// $input-bg: $panel-bg;
+// $input-border: $button-border;
+$input-shadow: none;
+// $input-hovered-text: $input-text;
+// $input-hovered-bg: $input-bg;
+// $input-hovered-border: $button-hovered-border;
+$input-hovered-shadow: none;
+// $input-focused-text: $input-text;
+// $input-focused-bg: $input-bg;
+// $input-focused-border: $input-hovered-border;
+$input-focused-shadow: none;
+
+// Link
+// $link-text: $accent;
+// $link-hover-text: desaturate(darken($accent, 5), 25);
+
+// Node
+// $node-text: $base-text;
+// $node-bg: $base-bg;
+// $node-border: $node-bg;
+$node-gradient: none;
+// $node-hovered-text: $hovered-text;
+// $node-hovered-bg: $hovered-bg;
+// $node-hovered-border: $node-hovered-bg;
+$node-hovered-gradient: none;
+// $node-selected-text: $selected-text;
+$node-selected-bg: $selected-bg;
+// $node-selected-border: $node-selected-bg;
+$node-selected-gradient: none;
+
+// List
+// $list-item-text: $text-color;
+// $list-item-bg: $popup-bg;
+// $list-item-hovered-text: $hovered-text;
+// $list-item-hovered-bg: $hovered-bg;
+// $list-item-selected-text: $selected-text;
+$list-item-selected-bg: $selected-bg;
+$list-item-focused-shadow: none;
+
+// Notification
+// $notification-info-border: $info;
+// $notification-info-bg: $info;
+// $notification-info-text: contrast-wcag( $notification-info-bg );
+// $notification-success-border: $success;
+// $notification-success-bg: $success;
+// $notification-success-text: contrast-wcag( $notification-success-bg );
+// $notification-warning-border: $warning;
+// $notification-warning-bg: $warning;
+// $notification-warning-text: contrast-wcag( $notification-warning-bg );
+// $notification-error-border: $error;
+// $notification-error-bg: $error;
+// $notification-error-text: contrast-wcag( $notification-error-bg );
+
+// Chart
+// $series-a: #ff6358; // The color of the first series.
+// $series-b: #ffd246; // The clor of the second series.
+// $series-c: #78d237; // The color of the third series.
+// $series-d: #28b4c8; // The color of the fourth series.
+// $series-e: #2d73f5; // The color of the fifth series.
+// $series-f: #aa46be; // The color of the sixth series.
+// $chart-font-size: $font-size;
+// $chart-font-size-sm: 11px;
+// $chart-font-size-md: 12px;
+// $chart-font-size-lg: 16px;
+// $chart-inactive: rgba( $text-color, .5 );
+// $chart-major-lines: rgba(0, 0, 0, .08); // The color of the Chart grid lines (major).
+// $chart-minor-lines: rgba(0, 0, 0, .04); // The color of the Chart grid lines (minor).
+// $chart-area-opacity: .8;
+
+// Icons
+// $icon-size: 16px;
+// $icon-size-lg: 32px;
+// $icon-spacing: 4px;
+
+// Disabled mixin variables
+$disabled-filter: none;
+$disabled-opacity: 1;
+
+@import '~@progress/kendo-theme-default/scss/numerictextbox';
+@import '~@progress/kendo-theme-default/scss/dialog';
+@import '~@progress/kendo-theme-default/scss/dropdownlist';
+//@import '~@progress/kendo-theme-default/scss/datetime';
+@import '~@progress/kendo-theme-default/scss/combobox';
+@import '~@progress/kendo-theme-default/scss/button';
+@import '~@progress/kendo-theme-default/scss/input';
+@import '~@progress/kendo-theme-default/scss/switch';
+@import '~@progress/kendo-theme-default/scss/dataviz';
+
+@import 'kendo/kendo-global';

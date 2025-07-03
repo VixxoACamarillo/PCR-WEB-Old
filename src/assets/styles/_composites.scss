@@ -1,0 +1,461 @@
+$mobile-tablet: 'screen and (max-width: 1365px)';
+$mobile: 'screen and (max-width: 767px)';
+$mobile-landscape: 'screen and (max-width: 767px) and (orientation: landscape)';
+$xs-mobile: 'screen and (max-width: 479px)';
+$tablet: '(min-width: 768px) and (max-width: 1365px)';
+$desktop: '(min-width: 1366px)';
+$large-desktop: '(min-width: 1100px)';
+$min-desktop: 'screen and (min-width: 1025px)';
+$composite-header-height: 60px;
+$composite-mobile-header-height: 60px;
+$composite-footer-height: 40px;
+
+// Minimum and maximum site widths for alpha release
+$composite-site-min-width: 1365px;
+$composite-site-max-width: 1600px;
+$composite-modal-max-height: calc(90vh - 77px - 91px); // 90% - header - footer
+
+@mixin composite-responsive-xs-mobile {
+  @media #{$xs-mobile} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-mobile {
+  @media #{$mobile} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-mobile-landscape {
+  @media #{$mobile-landscape} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-mobile-tablet {
+  @media #{$mobile-tablet} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-tablet {
+  @media #{$tablet} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-desktop {
+  @media #{$desktop} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-large-desktop {
+  @media #{$large-desktop} {
+    @content;
+  }
+}
+
+@mixin composite-responsive-min-desktop {
+  @media #{$min-desktop} {
+    @content;
+  }
+}
+
+@mixin composite-dropdown-shadow() {
+  box-shadow: 0 2px 4px 0 $color-container-shadow;
+}
+
+@mixin composite-dropdown() {
+  @include composite-dropdown-shadow;
+
+  background: $color-container-background;
+}
+
+@mixin composite-input() {
+  @include type-input-text;
+
+  background-color: $color-input-background;
+  padding: 3px 10px 0;
+  height: calc(1.5rem + 15px);
+}
+
+@mixin composite-input-active() {
+  outline: none;
+}
+
+@mixin subsection-title() {
+  color: $color-default-text;
+  font-size: $f3;
+  font-weight: 900;
+  line-height: 34px;
+  @media screen and (max-width: 850px) {
+    font-size: $f4;
+    line-height: 20px;
+  }
+}
+
+@mixin composite-input-search() {
+  @include composite-input();
+
+  background-image: url('https://vixxolink-cdn.s3.amazonaws.com/assets/svgs/input-search.svg');
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  padding-left: 2rem;
+}
+
+@mixin composite-link(
+  $text-color: $color-link-text,
+  $text-color-hover: $color-link-text-hover,
+  $line-color: $color-link-underline,
+  $line-color-hover: $color-link-underline-hover,
+  $icon-color: $color-link-icon,
+  $background-color: $color-container-background
+) {
+  color: $text-color;
+  span {
+    @include type-bold-text;
+    color: currentColor;
+    text-decoration: underline;
+  }
+  .link {
+    width: $f6;
+    height: $f6;
+    color: $icon-color;
+  }
+  &:hover {
+    color: $text-color-hover;
+    .link {
+      color: $line-color-hover;
+    }
+  }
+  @supports (text-decoration-skip-ink: auto) {
+    span {
+      text-decoration-skip-ink: auto;
+      text-decoration-color: $line-color;
+    }
+    &:hover {
+      span {
+        text-decoration-color: $line-color-hover;
+      }
+    }
+  }
+  @supports not (text-decoration-skip-ink: auto) {
+    span {
+      text-decoration: none;
+      position: relative;
+      z-index: 0;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 1px;
+        width: 100%;
+        height: 1px;
+        z-index: -1;
+        background-color: $line-color;
+      }
+    }
+  }
+}
+@mixin composite-label() {
+  @include type-label-text;
+  background-color: $color-input-background;
+  padding: 12px 10px 8px;
+  height: calc(20px + 1rem);
+}
+@mixin composite-label-search() {
+  @include composite-label;
+  background-image: url('https://vixxolink-cdn.s3.amazonaws.com/assets/svgs/input-search.svg');
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  padding-left: 2rem;
+}
+@mixin composite-button() {
+  @include type-button-text;
+  letter-spacing: 0.1rem;
+  border: 1px solid $color-button-border;
+  padding: 0 10px 0 10px;
+  height: calc(20px + 1rem);
+  min-width: 140px;
+  font-size: $f6 !important;
+  @include composite-responsive-mobile {
+    min-width: 120px;
+  }
+  @media #{$min-desktop} {
+    &:hover,
+    &:focus {
+      color: $color-button-text-hover;
+      background-color: $color-button-background-hover;
+      border-color: $color-button-border-hover;
+    }
+  }
+  &[disabled] {
+    color: $color-button-disabled;
+    border-color: $color-button-disabled;
+  }
+  &.k-bare {
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    border: none;
+    padding: 0;
+    height: auto;
+    min-width: 0;
+  }
+}
+@mixin composite-button-primary() {
+  @include composite-button;
+  border: none;
+  color: $color-button-primary-text;
+  background: $color-button-primary-background;
+  &[disabled] {
+    color: $color-button-primary-text-disabled;
+    background-color: $color-button-primary-background-disabled;
+  }
+}
+@mixin composite-button-secondary() {
+  @include composite-button;
+}
+@mixin composite-button-tertiary() {
+  @include type-navigation-bold-caps;
+  border: none;
+  background-color: transparent;
+  color: $color-button-tertiary-text;
+  line-height: 1;
+  height: 1.5rem;
+  padding: 0.3em 0 0;
+  &[disabled] {
+    color: $color-button-disabled;
+  }
+  &:hover,
+  &:focus {
+    color: $color-button-tertiary-text-hover;
+    background-color: transparent;
+  }
+}
+@mixin composite-kendo-dropdown() {
+  ul.k-list {
+    li.k-item {
+      display: flex;
+      flex-direction: row;
+      color: $color-gray-primary;
+      letter-spacing: 0;
+      line-height: 1.2;
+      box-sizing: content-box;
+      padding: 5px 15px;
+      @include composite-responsive-min-desktop {
+        cursor: pointer;
+        &:hover {
+          color: $color-dropdown-highlight-text;
+          background-color: $color-dropdown-highlight-background;
+        }
+      }
+    }
+  }
+}
+@mixin composite-previous-arrow() {
+  &::before {
+    margin-right: 10px;
+    margin-top: -4px;
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    border-width: 5px;
+    pointer-events: none;
+    border-right-color: currentColor;
+  }
+}
+@mixin composite-next-arrow() {
+  &::after {
+    margin-left: 10px;
+    margin-top: -4px;
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    border-width: 5px;
+    pointer-events: none;
+    border-left-color: currentColor;
+  }
+}
+@mixin composite-sr-detail-primary() {
+  flex-basis: 436px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 117px;
+}
+@mixin composite-sr-detail-secondary() {
+  flex-basis: 291px;
+  flex-grow: 1;
+}
+@mixin composite-sr-detail-visit-summary-primary() {
+  flex-basis: 291px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+@mixin composite-sr-detail-visit-summary-secondary() {
+  flex-basis: 387px;
+  flex-grow: 1;
+}
+@mixin composite-sr-detail-modules() {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin composite-sr-detail-left-module() {
+  flex-basis: 183px;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+@mixin composite-sr-detail-right-module() {
+  flex-basis: 233px;
+  flex-grow: 1;
+}
+@mixin purple-pill {
+  height: 17px;
+  width: 30px;
+  border-radius: 9px;
+  // background color classes are for dynamic styling of the priority row in the table template
+  background-color: $color-priority-0;
+  &::after {
+    content: 'PM';
+    padding-left: 7px;
+    height: 1.17%;
+    width: 1.32%;
+    color: $color-inverted-text;
+    font-family: Biotif;
+    font-size: $f7;
+    font-weight: 900;
+    line-height: 17px;
+  }
+}
+@mixin composite-cc-input {
+  background-image: url('https://vixxolink-cdn.s3.amazonaws.com/assets/svgs/input-search.svg');
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  border: 1px solid #d7dcdc;
+  width: 100%;
+  font-size: $f5;
+  line-height: 1;
+  color: #203535;
+  width: 100%;
+  height: 2rem;
+  padding: 0 0.5rem 0 2rem;
+  outline: 0;
+  &::-webkit-search-cancel-button {
+    /* select all "X" buttons in search inputs */
+    margin-bottom: -1px;
+  }
+  &::-webkit-textfield-decoration-container {
+    margin-top: 2px;
+  }
+  &::-webkit-input-placeholder {
+    margin: 0;
+  }
+  @content;
+}
+@mixin transition($args...) {
+  -moz-transition: $args;
+  -o-transition: $args;
+  -webkit-transition: $args;
+  transition: $args;
+}
+@mixin responsive-form() {
+  form {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      width: 736px;
+    }
+    @include composite-responsive-mobile {
+      width: 100%;
+    }
+    display: flex;
+    flex-direction: column;
+    .form-element {
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      .label-section {
+        font-size: $f7;
+        line-height: 14px;
+        color: $color-light-text;
+        margin-bottom: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      &.half {
+        width: 49%;
+      }
+      &.left {
+        float: left;
+        margin-right: 2%;
+      }
+      .select-list-combobox {
+        width: 100%;
+      }
+      textarea {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 40px;
+        resize: none;
+        outline: none;
+        border: 1px solid $color-input-border;
+        color: $color-default-text;
+        font-size: $f5;
+        line-height: 20px;
+      }
+      input,
+      select {
+        border: 1px solid $color-input-border;
+        height: 30px;
+        outline: none;
+        color: $color-default-text;
+        font-size: $f5;
+        line-height: 20px;
+        &:disabled {
+          color: $color-input-border-disabled;
+          font-weight: bold;
+          background-color: $color-input-border;
+        }
+      }
+      .select-list-combobox {
+        @include composite-kendo-dropdown;
+        .k-autocomplete {
+          width: 100%;
+          border: none;
+          .k-clear-value {
+            display: none !important;
+          }
+        }
+        .k-dropdown-wrap {
+          border-color: $color-dropdown-border;
+        }
+        .k-input {
+          @include composite-input;
+        }
+        .k-icon {
+          color: $color-dropdown-arrow;
+          &.k-i-close {
+            right: 30px;
+          }
+        }
+        .k-select {
+          background-color: $color-dropdown-arrow-background;
+          border: none !important;
+        }
+      }
+    }
+    @content;
+  }
+}

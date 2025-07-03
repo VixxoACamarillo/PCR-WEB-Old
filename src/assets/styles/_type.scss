@@ -1,0 +1,104 @@
+$f1: 3rem;
+$f2: 2.25rem;
+$f3: 1.5rem;
+$f4: 1.25rem;
+$f5: 1rem;
+$f6: 0.75rem;
+$f7: 0.625rem;
+$f8: 0.5rem;
+
+.f1 {
+  font-size: $f1;
+}
+.f2 {
+  font-size: $f2;
+}
+.f3 {
+  font-size: $f3;
+}
+.f4 {
+  font-size: $f4;
+}
+.f5 {
+  font-size: $f5;
+}
+.f6 {
+  font-size: $f6;
+}
+.f7 {
+  font-size: $f7;
+}
+.f8 {
+  font-size: $f8;
+}
+
+// @media(max-width: 1367px) {
+//   .f1 { font-size: $f2; }
+//   .f2 { font-size: $f3; }
+//   .f3 { font-size: $f4; }
+// }
+
+@mixin type-default-text() {
+  font-family: 'Biotif', sans-serif;
+  font-size: $f5;
+  line-height: 1;
+  color: $color-default-text;
+}
+
+@mixin type-bold-text() {
+  font-weight: 900;
+}
+
+@mixin type-small-text() {
+  @include type-bold-text();
+  font-size: $f7;
+  line-height: 1;
+}
+
+@mixin type-small-caps() {
+  @include type-small-text();
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+@mixin type-navigation-bold-caps() {
+  @include type-bold-text();
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  font-size: $f6;
+  line-height: 1;
+}
+
+@mixin type-input-text() {
+  @include type-default-text;
+}
+
+@mixin type-button-text() {
+  @include type-small-caps;
+}
+
+@mixin type-label-text() {
+  @include type-small-caps;
+}
+
+@mixin type-heading($scale: '1') {
+  @include type-bold-text;
+
+  @if $scale == '1' {
+    font-size: $f1;
+  } @else if $scale == '2' {
+    font-size: $f2;
+    line-height: 1.5;
+  } @else if $scale == '3' {
+    font-size: $f3;
+  } @else if $scale == '4' {
+    font-size: $f4;
+  } @else if $scale == '5' {
+    font-size: $f5;
+  } @else if $scale == '6' {
+    font-size: $f7;
+  }
+  @if $scale != '2' {
+    line-height: 1;
+  }
+}

@@ -1,0 +1,326 @@
+// ---------------------------------------------------------------------
+// Custom color functions (Source: https://github.com/bbe-io/sass-mix)
+// ---------------------------------------------------------------------
+
+@function mix-blend-normal($foreground, $background) {
+  $opacity: opacity($foreground);
+  $background-opacity: opacity($background);
+  $bm-red: red($foreground) * $opacity + red($background) * $background-opacity *
+    (1 - $opacity);
+  $bm-green: green($foreground) * $opacity + green($background) *
+    $background-opacity * (1 - $opacity);
+  $bm-blue: blue($foreground) * $opacity + blue($background) *
+    $background-opacity * (1 - $opacity);
+  @return rgb($bm-red, $bm-green, $bm-blue);
+}
+
+@function mix-blend-multiply($foreground, $background) {
+  $bm-red: red($background) * red($foreground) / 255;
+  $bm-green: green($background) * green($foreground) / 255;
+  $bm-blue: blue($background) * blue($foreground) / 255;
+  @return mix-blend-normal(
+    rgba($bm-red, $bm-green, $bm-blue, opacity($foreground)),
+    $background
+  );
+}
+
+// ---------------------------------------------------------------------
+// Descriptive colors (to be used internally only in this file)
+// ---------------------------------------------------------------------
+
+// B&W
+$_black: #000;
+$_white: #fff;
+
+// Greens
+$_autumn: #25300a;
+$_moss: #6e8036;
+$_olive: #788536; // Was #7d913d;
+$_olive_2: #00aa79;
+$_olive_3: #e2f5f2;
+$_apple: #afedae;
+$_honeydew: #f0fff0;
+$_pine: #569599;
+
+// Grayscale
+$_onyx: #102424;
+$_coal: #203535;
+$_gray29: #4a4a4a;
+$_stone: #829191;
+$_stone_light: #697881;
+$_nickel: #afbaba;
+$_quartz: #d7dcdc;
+$_platinum: #eaeeee;
+$_adamantium: #d6d6d6;
+$_palladium: #f2f6f6;
+
+// Accent
+$_purple: #9628eb;
+$_blue: #3278ff;
+$_blue_2: #255abf;
+$_hoverBlue: #5293ff;
+$_yellow: #ffc800;
+$_red: #e10000;
+$_orange: #ff8000;
+$_green: #008000;
+$_green_2: #00c900;
+$_brown: #a16125;
+$_wildwatermelon: #ff5565;
+$_blue_3: #050bb0;
+$_yellow_2: #f5c400;
+$_green_3: #2ca314;
+$_purple_2: #8d0243;
+
+// ---------------------------------------------------------------------
+// Semantic colors (can be used externally throughout the application)
+// ---------------------------------------------------------------------
+
+// Vixxo Color Palette
+$color-vixxo-primary: $_olive;
+$color-vixxo-secondary: $_moss;
+$color-vixxo-disabled: $_moss;
+$color-gray-primary: $_coal;
+
+// ---------------------------------------------------------------------
+// Assigned colors (to be used externally throughout the application)
+// ---------------------------------------------------------------------
+
+// Basic Text and Backgrounds
+$color-default-text: $_coal;
+$color-secondary-text: $_nickel;
+$color-light-text: $_stone;
+$color-dark-text: $_onyx;
+$color-text-highlight: $_quartz;
+$color-grayed: $_stone_light;
+$color-dark-grayed-text: $_gray29;
+$color-default-background: $_white;
+$color-heading-smallest: $_stone;
+$color-container-background: $_white;
+$color-container-border: $_nickel;
+$color-container-shadow: rgba($_black, 0.04);
+$color-container-empty-background: $_palladium;
+$color-container-empty-foreground: $_quartz;
+$color-scroll-shadow: rgba($_black, 0.08);
+$color-page-background: $_platinum;
+$color-link-text: $_coal;
+$color-link-text-hover: $_autumn;
+$color-link-underline: $_autumn;
+$color-link-underline-hover: $_apple;
+$color-link-icon: $_nickel;
+$color-more-text: $_olive;
+$color-error-page-background: $_nickel;
+$color-error-page-container-background: $_coal;
+$color-error-page-text: $_platinum;
+$color-warn: $_yellow;
+$color-error-text: $_red;
+$color-popup-error-background: $_red;
+$color-popup-error-text: $_white;
+$color-background-light-green: $_olive_3;
+
+// Inverted Text and Backgrounds
+$color-inverted-text: $_white;
+$color-inverted-background: $_coal;
+$color-inverted-icons: $_white;
+$color-inverted-container-background: $_coal;
+$color-inverted-container-border: $_white;
+$color-inverted-link-text: $_white;
+$color-inverted-link-text-active: $_apple;
+
+// Inputs
+$color-input-background: $_white;
+//$_platinum
+$color-input-border: $_platinum;
+$color-input-border-active: $_nickel;
+$color-input-border-disabled: $color-dark-text;
+$color-input-placeholder: $_nickel;
+$color-input-hover: $_hoverBlue;
+$color-checkbox-border-default: $_nickel;
+$color-checkbox-border-header: $_onyx;
+$color-checkbox-checked: $color-vixxo-primary;
+$color-checkbox-check: $_white;
+$color-radio-default: $_quartz;
+$color-radio-checked: $color-vixxo-primary;
+$color-radio-label: $_stone;
+$color-radio-label-selected: $_onyx;
+$color-switch-foreground-on: $_olive;
+$color-switch-background-on: $_autumn;
+$color-switch-foreground-off: $_white;
+$color-switch-background-off: $_stone;
+$color-switch-foreground-disabled: $_quartz;
+$color-switch-background-disabled: $_nickel;
+
+// Buttons
+$color-button-text: $color-vixxo-primary;
+$color-button-text-hover: $_autumn;
+$color-button-background: transparent;
+$color-button-background-hover: $_apple;
+$color-button-border: $color-vixxo-primary;
+$color-button-border-hover: $_apple;
+$color-button-disabled: $_quartz;
+$color-button-disabled-text: $_stone;
+$color-button-primary-text: $_white;
+$color-button-primary-background: $color-vixxo-primary;
+$color-button-primary-border: $color-vixxo-primary;
+$color-button-primary-text-disabled: $_olive;
+$color-button-primary-background-disabled: $_moss;
+$color-button-tertiary-text: $color-vixxo-primary;
+$color-button-tertiary-text-hover: $_apple;
+$color-button-navigation-text: $_stone;
+$color-button-navigation-text-hover: $_coal;
+
+// Editable Content
+$color-edit-text-hover: $_autumn;
+$color-edit-background-hover: $_apple;
+$color-edit-alternate-text-hover: $_autumn;
+$color-edit-alternate-background-hover: $_honeydew;
+
+// Dropdowns
+$color-dropdown-arrow: $_nickel;
+$color-dropdown-arrow-background: $_platinum;
+$color-dropdown-item-background: $_platinum;
+$color-dropdown-simple-background: $_palladium;
+$color-dropdown-border: $_platinum;
+$color-dropdown-hover: $_hoverBlue;
+$color-dropdown-header: $_stone;
+$color-dropdown-header-background: $_white;
+$color-dropdown-highlight-text: $_olive;
+$color-dropdown-highlight-background: $_honeydew;
+$color-dropdown-footer-background: $_white;
+$color-dropdown-footer-border: $_platinum;
+
+// Date and Time Pickers
+$color-required-date-time: $_black;
+$color-timezone-text: $_white;
+$color-timezone-background: $_stone;
+$color-date-selection: $color-vixxo-primary;
+
+// Tables
+$color-table-background: $_nickel;
+$color-table-header-background: $_platinum;
+$color-table-border: $_nickel;
+$color-table-columns-panel-border: $_adamantium;
+$color-table-highlighted-row: $_honeydew;
+$color-table-highlighted-column: $_platinum;
+$color-table-highlighted-header-text: $_white;
+$color-table-highlighted-header-background: $_stone;
+$color-table-highlighted-cross: mix-blend-multiply($_honeydew, $_platinum);
+$color-table-alt-row-background: $_palladium;
+$color-table-sla-overdue: $_red;
+$color-table-sla-soon: $_red;
+$color-table-tag-text: $_white;
+$color-table-tag-background: $_coal;
+$color-table-tag-text-highlighted-column: $color-table-highlighted-column;
+$color-table-tag-text-highlighted-row: $color-table-highlighted-row;
+$color-table-tag-text-highlighted-cross: $color-table-highlighted-cross;
+
+// Priorities
+$color-priority-0: $_purple;
+$color-priority-1: $_red;
+$color-priority-2: $_orange;
+$color-priority-3: $_yellow;
+$color-priority-4: $_green;
+$color-priority-5: $_blue;
+$color-priority-6: $_brown;
+
+// Priorities
+// TODO: Disable previous color on the way so it match one single schema
+$priority-color-1: $_red;
+$priority-color-2: $_orange;
+$priority-color-3: $_yellow;
+$priority-color-4: $_green_2;
+$priority-color-5: $_blue;
+$priority-color-6: $_blue_2;
+$priority-color-pm: $_purple;
+$priority-color-project: $_brown;
+
+// Loader
+$color-loader-1: $_moss;
+$color-loader-2: $_honeydew;
+$color-loader-3: $_autumn;
+$color-loader-4: $_olive;
+
+// Filter List
+$color-filter-list-background: $_coal;
+$color-filter-list-background-hover: $_onyx;
+$color-filter-list-border: $_quartz;
+$color-filter-list-header-text: $_stone;
+$color-filter-list-footer-action-text: $_stone;
+$color-filter-list-body-text: $_platinum;
+$color-filter-list-icon: $_stone;
+$color-filter-list-icon-hover: $_platinum;
+
+// Tabs
+$color-tabs-background: $_quartz;
+$color-tabs-text: $_stone;
+$color-tabs-background-active: $_white;
+
+// Avatars
+$color-avatar-system-text: $_white;
+$color-avatar-system-background: $_olive;
+$color-avatar-default-text-1: $_olive;
+$color-avatar-default-background-1: $_honeydew;
+$color-avatar-default-text-2: $_olive;
+$color-avatar-default-background-2: $_platinum;
+$color-avatar-default-text-3: $_moss;
+$color-avatar-default-background-3: $_apple;
+$color-avatar-default-text-4: $_quartz;
+$color-avatar-default-background-4: $_autumn;
+
+// Modals
+$color-modal-header: $_palladium;
+$color-modal-header-icon: $_nickel;
+$color-modal-divider: $_platinum;
+
+// SR Activity Tracker
+$color-activity-header: $_stone;
+$color-activity-metadata: $_stone;
+$color-activity-divider: $_platinum;
+
+// SR Attachments Panel
+$color-attachments-background-hover: $_palladium;
+$color-attachments-icon-text: $_coal;
+$color-attachments-icon-text-hover: $_autumn;
+$color-attachments-icon-background: $_platinum;
+$color-attachments-icon-background-hover: $_apple;
+$color-upload-text: $color-vixxo-primary;
+$color-upload-background: $_white;
+$color-upload-background-hover: $_honeydew;
+
+// Utility Icons (e.g., delete, edit, etc.)
+$color-utility-icon: $_stone;
+$color-utility-icon-hover: $_coal;
+$color-utility-icon-inline: $_quartz;
+
+// SR Visit Details
+$color-visit-background: $_palladium;
+$color-visit-text: $_coal;
+$color-visit-divider: $_platinum;
+$color-visit-background-hover: $_honeydew;
+$color-visit-text-hover: $_autumn;
+$color-visit-text-past: $_stone;
+$color-visit-footer-background: $_platinum;
+$color-visit-header-icon: $_nickel;
+$color-visit-action-icon: $_quartz;
+$color-visit-time-unknown: $_nickel;
+$color-visit-timezone-background: $_quartz;
+$color-visit-timezone-text: $_stone;
+$color-visit-timezone-background-hover: $_autumn;
+$color-visit-timezone-text-hover: $_honeydew;
+$color-visit-activity-background-hover: $_apple;
+$color-visit-activity-timezone-text-hover: $_apple;
+$color-visit-status-background: $_coal;
+$color-visit-status-text: $_nickel;
+$color-visit-status-background-hover: $_autumn;
+$color-visit-status-text-hover: $_honeydew;
+$color-visit-status-background-past: $_quartz;
+$color-visit-status-text-past: $_stone;
+$color-visit-status-background-unresolved: $_yellow;
+$color-visit-status-text-unresolved: $_coal;
+$color-visit-technicians-text: $_stone;
+$color-visit-technicians-text-hover: $_autumn;
+
+// Payment Table Status
+$payment-status-color-1: $_blue_3;
+$payment-status-color-2: $_yellow_2;
+$payment-status-color-3: $_green_3;
+$payment-status-color-4: $_purple_2;

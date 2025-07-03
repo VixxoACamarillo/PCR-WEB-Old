@@ -1,0 +1,64 @@
+.radio-input {
+  input[type='radio'] {
+    margin: 0;
+    padding: 0;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+    position: absolute;
+    opacity: 0;
+    -webkit-appearance: none;
+    pointer-events: none;
+    & + label {
+      color: $color-radio-label;
+      padding: 0 10px 0 22px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 2px solid $color-radio-default;
+        border-radius: 50%;
+        vertical-align: bottom;
+        margin-top: 0px;
+        margin-bottom: 4px;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0.4rem;
+        bottom: 0;
+        width: 0.4rem;
+        height: 0.4rem;
+        background-color: $color-radio-checked;
+        border-radius: 50%;
+        vertical-align: bottom;
+        margin-top: 0px;
+        margin-bottom: 8px;
+        opacity: 0;
+      }
+    }
+
+    &:focus + label {
+      &::before {
+        border-color: $color-vixxo-primary;
+      }
+    }
+
+    &:checked + label {
+      color: $color-radio-label-selected;
+
+      &::before {
+        border-color: $color-radio-checked;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}

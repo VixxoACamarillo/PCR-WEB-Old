@@ -1,0 +1,53 @@
+/* Buttons */
+
+button.k-button {
+  color: $color-vixxo-primary;
+  background-color: transparent;
+  border-color: none;
+  &.k-primary {
+    background-image: none;
+    @include composite-button-primary;
+
+    &:after {
+      border-color: transparent;
+    }
+
+    &:hover {
+      @include composite-button-primary;
+    }
+
+    &:focus,
+    &.k-state-focused {
+      box-shadow: 0 2px 4px 0 $color-container-shadow !important;
+    }
+  }
+
+  &.secondary {
+    background-image: none;
+    @include composite-button-secondary;
+    &:hover {
+      color: $color-link-text-hover;
+      background-color: $color-link-underline-hover;
+    }
+  }
+
+  &.secondary.k-button {
+    background-color: $_white;
+  }
+
+  &.tertiary {
+    background-image: none;
+    @include composite-button-tertiary;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.k-primary[disabled] {
+    opacity: 1;
+    color: $color-button-disabled-text;
+    border-color: $color-button-disabled;
+    background-color: $color-button-disabled;
+  }
+}
