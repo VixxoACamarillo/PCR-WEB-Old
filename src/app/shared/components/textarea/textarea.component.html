@@ -1,0 +1,36 @@
+<div class="textarea-content" [ngClass]="{ 'modal-footer': modalFooter }">
+  <label [for]="inputId" *ngIf="label">
+    {{ label }} <span *ngIf="requirementLabel"> ({{ requirementLabel }}) </span>
+  </label>
+
+  <textarea
+    class="k-textarea"
+    [ngClass]="{ inline: inline }"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChanged($event)"
+    (focus)="handleFocus($event)"
+    (blur)="handleBlur($event)"
+    [id]="inputId"
+    [placeholder]="placeholder"
+    maxlength="{{ maxlength }}"
+    appFocus
+    [isFocused]="autofocus"
+  >
+    {{ value }}
+  </textarea>
+  <div
+    *ngIf="profile && profile.name"
+    class="identity"
+    [ngClass]="{ 'identity-note': isProfileFixed }"
+  >
+    <div class="avatar">
+      <app-avatar context="textarea" [profile]="profile"></app-avatar>
+    </div>
+    <div class="author">
+      <div class="name">{{ profile.name }}</div>
+      <div [ngClass]="{ hidden: isSPUser }" class="visibility">
+        This note is visible to: Everyone
+      </div>
+    </div>
+  </div>
+</div>

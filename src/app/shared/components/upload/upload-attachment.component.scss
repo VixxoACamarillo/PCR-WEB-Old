@@ -1,0 +1,149 @@
+@import 'definitions';
+
+.uploadError {
+  border-color: $_red;
+}
+
+.k-upload {
+  input[type='file'] {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    opacity: 0;
+  }
+
+  .k-dropzone {
+    transition: padding 0.3s ease-out;
+    background-color: $color-upload-background;
+    display: flex;
+    align-items: center;
+
+    .k-dropzone-hint {
+      @include type-small-caps;
+      font-style: normal;
+      margin-left: 30px;
+      color: $color-upload-text;
+    }
+
+    .k-button {
+      @include composite-button-primary;
+      input {
+        width: 100%;
+      }
+    }
+
+    em {
+      @include type-small-caps;
+      font-style: normal;
+      margin-left: 30px;
+      color: $color-upload-text;
+    }
+
+    kendo-upload-status-total {
+      display: none;
+    }
+
+    &.k-dropzone-active {
+      position: relative;
+      padding-top: 160px;
+      padding-bottom: 160px;
+      background-color: $color-upload-background-hover;
+
+      .k-dropzone-hint {
+        display: none;
+      }
+
+      .k-button,
+      em {
+        display: none;
+      }
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        border: 1px dashed $color-upload-text;
+      }
+
+      &::after {
+        @include type-small-caps;
+        font-style: normal;
+        color: $color-upload-text;
+        margin-left: 30px;
+        content: 'Drop File Here';
+      }
+    }
+  }
+
+  .uploading-file {
+    padding: 16px 30px 30px 0px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0; // allows truncated text inside a flex child
+    white-space: nowrap;
+
+    .loader {
+      margin-right: 10px;
+    }
+    .file-icon {
+      position: relative;
+      margin-right: 10px;
+
+      .file {
+        width: 4rem;
+        height: 3rem;
+        color: $color-attachments-icon-background;
+      }
+
+      .extension {
+        @include type-small-caps;
+        position: absolute;
+        text-align: center;
+        width: 4rem;
+        bottom: 8px;
+        line-height: 1;
+        color: $color-attachments-icon-text;
+      }
+    }
+
+    .metadata {
+      min-width: 0; // allows truncated text inside a flex child
+
+      .filename {
+        @include type-small-caps;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 280px;
+        margin-right: 26px;
+      }
+
+      .filesize {
+        font-size: $f4;
+        color: $color-activity-metadata;
+      }
+    }
+
+    &:hover {
+      background-color: $color-attachments-background-hover;
+
+      .file-icon {
+        .file {
+          color: $color-attachments-icon-background-hover;
+        }
+
+        .extension {
+          color: $color-attachments-icon-text-hover;
+        }
+      }
+    }
+  }
+  .k-action-buttons {
+    display: none;
+  }
+}

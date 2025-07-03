@@ -1,0 +1,27 @@
+<div
+  class="ui-card-container"
+  #cardContent
+  [ngStyle]="{ height: cardHeight, background: cardColor }"
+>
+  <div class="title-bar">
+    <h4>{{ cardTitle }}</h4>
+    <!--this code wont be used for today, It will be required after alpha-->
+    <!--<button (click)="onMenuClicked($event)">
+      <div class="menu-icon">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </button>-->
+  </div>
+
+  <div class="ui-card-content">
+    <ng-content select="[card-body]"></ng-content>
+  </div>
+</div>
+<div class="ui-card-container sub-card" *ngIf="subCardTitle">
+  <div class="title-bar">
+    <h4>{{ subCardTitle }}</h4>
+  </div>
+  <ng-content select="[sub-card-body]"></ng-content>
+</div>
