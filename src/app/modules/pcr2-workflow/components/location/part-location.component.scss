@@ -1,0 +1,50 @@
+.header {
+  width: 100%;
+  background-color: #f6f6f6;
+  box-sizing: border-box;
+  font-family: 'OpenSans-Bold', 'Open Sans Bold', 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #023535;
+  text-align: left;
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+.location-items {
+  font-size: 14px;
+  padding: 8px 2px 8px 16px;
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+  color: #829191;
+  text-align: left;
+  line-height: normal;
+  cursor: pointer;
+  margin-left: 0;
+}
+
+.location-items-disable {
+  padding: 8px 2px 8px 16px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+  color: #afbaba;
+  text-align: left;
+  line-height: normal;
+  cursor: pointer;
+  margin-left: 0;
+  pointer-events: none;
+  background-color: #eaeeee;
+}
+
+.line-item {
+  border-bottom: 1px solid #eaeeee;
+  margin: 0px;
+  padding: 0px 0 0px 0;
+}
+
+.title {
+  font-size: 12px;
+  padding: 8px 2px 8px 16px;
+  text-transform: uppercase;
+}

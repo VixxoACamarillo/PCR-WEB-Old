@@ -1,0 +1,60 @@
+@import '../../../../../assets/styles/definitions';
+
+.notes {
+  font-family: 'Open Sans Semibold', 'Open Sans', sans-serif;
+  font-size: $f6;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  ::ng-deep kendo-upload-action-buttons {
+  display: none;
+  }
+}
+
+::ng-deep .k-dropzone {
+  padding: 0 !important;
+}
+
+::ng-deep ng-content {
+  height: 100% !important;
+}
+
+.notes {
+  ::ng-deep .k-dialog {
+    .k-dialog-titlebar .k-dialog-title {
+      justify-content: center !important;
+      h2 {
+        font-size: $f4 !important;
+      }
+    }
+    .k-dialog-content {
+      height: calc(100% - (20px + 1rem));
+  
+      .modal-body-content {
+        max-height: calc(100vh - 91px) !important;
+        padding: 16px !important;
+  
+        div {
+          height: 100% !important;
+        }
+      }
+    }
+  
+    .k-dialog-buttongroup {
+      padding: 0 !important;
+      app-button {
+        width: 100%;
+  
+        .k-button {
+          width: 100% !important;
+          border-radius: 0;
+          margin: 0 !important;
+        }
+      }
+    }
+  }  
+}
+
+::ng-deep .k-dialog-wrapper {
+  height: 99%;
+}

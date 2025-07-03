@@ -1,0 +1,109 @@
+<div class="pcr" *ngIf="!loader && !apiLoader">
+  <div *ngFor="let part of locationResponse">
+    <div class="pcr-inline">
+      <div class="part-copy">
+        <span>
+          <img
+            class="img-pointer"
+            *ngIf="part.showCopyIcon"
+            (click)="copyPart(part.partId)"
+            src="assets/images/svgs/content_copy.svg"
+          />
+        </span>
+      </div>
+      <div class="part-detail">
+        <span class="part-heading"> {{ part.partName }} </span>
+        <span class="part-number">
+          {{ part.partNumber }}
+          <span *ngIf="part.skuNumber">/ {{ part?.skuNumber }} </span>
+        </span>
+      </div>
+      <div class="part-copy">
+        <span>
+          <img
+            class="img-pointer"
+            (click)="deletePart(part)"
+            src="assets/images/svgs/delete-part.svg"
+          />
+        </span>
+      </div>
+    </div>
+    <div
+      *ngFor="let path of (part.pcrLocationPaths | orderByLevel: 'level')"
+      [class.selected]="path.isSelected"
+      (click)="editPathSelection(path, part.copyId)"
+    >
+      <span *ngIf="path.isSelected"> {{ path.partUiPathName }} </span>
+      <img
+        *ngIf="path.isSelected"
+        class="check-mark"
+        src="assets/images/svgs/check-mark.svg"
+      />
+    </div>
+
+    <app-location
+      *ngIf="!part.isEdit"
+      [locationResponse]="locationResponse"
+      [levelInfo]="getSelectionByPartId(part.partId, part.copyId)"
+      [copyId]="part.copyId"
+      (selectedPart)="nextLevelSelectionData($event, part.copyId)"
+    >
+    </app-location>
+    <div>{{ selectedAction.actionName }}</div>
+    <div>{{ selectedCause.causeName }}</div>
+    <app-actions
+      *ngIf="
+        !getSelectionByPartId(part.partId, part.copyId)?.length || part.isEdit
+      "
+      [actionData]="getActionsByPartId(part.partId)"
+      [selectedPartId]="part.partId"
+      [selectedAction]="part.action"
+      [selectedCause]="part.cause"
+      [causeData]="part.causeData"
+      (selectedCauseData)="
+        seletedPartActionCause($event, part.partId, part.copyId)
+      "
+    >
+    </app-actions>
+  </div>
+  <app-modal
+    *ngIf="showDeleteConfirmation"
+    [requiredMessage]="false"
+    [width]="0"
+    primaryButton="Delete"
+    secondaryButton="Cancel"
+    [displayCloseButton]="false"
+    (onClose)="close(deletePartInfo.partId, deletePartInfo.copyId, $event)"
+    title="Delete Part"
+    [allowToSubmit]="true"
+  >
+    <div class="delete-confirmation">
+      <div class="delete-header"><span>Delete Part</span></div>
+      <span class="delete-part-name"> {{ deletePartInfo.partName }} </span>
+      <span class="delete-part-number">
+        {{ deletePartInfo.partNumber }}
+        <span *ngIf="deletePartInfo.skuNumber"
+          >/ {{ deletePartInfo?.skuNumber }}
+        </span>
+      </span>
+      <span class="delete-message">
+        Deleting this part will delete all area, action, and cause selections
+        made for it. Are you sure you want to delete this part?
+      </span>
+    </div>
+  </app-modal>
+  <div class="pcr-error-alert">
+    <app-alert
+      class="pcr-contain-inline"
+      *ngIf="requestError"
+      [header]="requestError.header"
+      [message]="requestError.message"
+      [isInteractive]="true"
+      ctaType="cancel"
+      (action)="onCloseError($event)"
+    >
+    </app-alert>
+  </div>
+</div>
+
+<app-loader class="loading-overlay" *ngIf="displayLoader()"></app-loader>

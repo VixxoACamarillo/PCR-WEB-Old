@@ -1,0 +1,21 @@
+<app-search-bar
+  [value]="searchString"
+  [displayFilter]="false"
+  (search)="onTypeSearch($event)"
+  class="parts-search-bar"
+>
+</app-search-bar>
+<div class="grid">
+  <vixxo-grid
+    [data]="partModel"
+    [dataLoading]="isDataLoading"
+    [columns]="columnsModel.columns"
+    [selectedKeys]="selectedItems"
+    [selectableSettings]="selectableSettings"
+    (pageEvent)="infinitySearch()"
+    (cellClick)="onCellClickEvent($event)"
+    [gridType]="'adaptToCard'"
+    (selectedRowChange)="selectedRowChange($event)"
+  >
+  </vixxo-grid>
+</div>

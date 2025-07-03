@@ -1,0 +1,22 @@
+@import '../../../../../assets/styles/definitions';
+
+.return {
+  float: right;
+
+  a,
+  a:hover,
+  a:active {
+    color: $color-inverted-text;
+    cursor: pointer;
+  }
+
+  span {
+    @include type-small-caps;
+  }
+
+  .return-icon {
+    margin-left: 3px;
+    height: 11px;
+    width: 11px;
+  }
+}

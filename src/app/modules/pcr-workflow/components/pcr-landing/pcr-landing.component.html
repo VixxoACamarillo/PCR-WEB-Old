@@ -1,0 +1,112 @@
+<div class="workflow-container container-fluid">
+  <div class="new-pcr-detail">
+    <main class="detail">
+      <div class="detail-content pcr-landing-component">
+        <div class="new-pcr-header">
+          <div class="pcr-header">
+            <div class="new-pcr-title-container">
+              <div class="pcr-title">
+                <h2>PCR for Service Request {{ serviceRequestNumber }}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="pcr-items">
+          <div class="pcr-fields">
+            <div class="primary-info">
+              <div class="location-info">
+                <div class="category">
+                  <p class="section-title">
+                    Category <span class="required">*</span>
+                  </p>
+                  <kendo-dropdownlist
+                    [data]="categoryData"
+                    (valueChange)="onCategoryUpdated($event)"
+                    class="new-pcr-dropdown"
+                    [value]="selectedCategory"
+                  >
+                  </kendo-dropdownlist>
+                </div>
+
+                <div class="problem">
+                  <p class="section-title">Problem</p>
+                  <kendo-dropdownlist
+                    [data]="problemData"
+                    class="new-pcr-dropdown"
+                    [disabled]="!selectedCategory"
+                    [(value)]="selectedProblem"
+                    (valueChange)="onPcrUpdated($event)"
+                  >
+                    <ng-template kendoDropDownListValueTemplate let-dataItem>
+                      <span>{{ dataItem }}</span>
+                    </ng-template>
+                    <ng-template kendoDropDownListItemTemplate let-dataItem>
+                      <span>{{ dataItem }}</span>
+                    </ng-template>
+                  </kendo-dropdownlist>
+                </div>
+
+                <div class="cause">
+                  <p class="section-title">Cause</p>
+                  <kendo-dropdownlist
+                    [data]="causeData"
+                    class="new-pcr-dropdown"
+                    [disabled]="!selectedCategory"
+                    [(value)]="selectedCause"
+                    (valueChange)="onPcrUpdated($event)"
+                  >
+                    <ng-template kendoDropDownListValueTemplate let-dataItem>
+                      <span>{{ dataItem }}</span>
+                    </ng-template>
+                    <ng-template kendoDropDownListItemTemplate let-dataItem>
+                      <span>{{ dataItem }}</span>
+                    </ng-template>
+                  </kendo-dropdownlist>
+                </div>
+
+                <div class="resolution">
+                  <p class="section-title">Resolution</p>
+                  <kendo-dropdownlist
+                    [data]="resolutionData"
+                    class="new-pcr-dropdown"
+                    [disabled]="!selectedCategory"
+                    [(value)]="selectedResolution"
+                    (valueChange)="onPcrUpdated($event)"
+                  >
+                    <ng-template kendoDropDownListValueTemplate let-dataItem>
+                      <span>{{ dataItem }}</span>
+                    </ng-template>
+                    <ng-template kendoDropDownListItemTemplate let-dataItem>
+                      <span>{{ dataItem }}</span>
+                    </ng-template>
+                  </kendo-dropdownlist>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--Validation Errors-->
+        <div class="new-sr-navigation new-sr-error" *ngIf="invalidFields">
+          <div class="invalid-fields">
+            <div class="invalid-header">Required fields cannot be blank:</div>
+            {{ invalidFields }}
+          </div>
+        </div>
+
+        <div class="new-sr-navigation">
+          <div class="button-holder">
+            <div class="continue">
+              <app-button
+                (clicked)="onSubmit()"
+                type="primary"
+                label="Submit"
+              ></app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="loading-overlay" *ngIf="loading"><app-loader></app-loader></div>

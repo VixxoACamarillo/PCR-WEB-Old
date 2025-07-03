@@ -1,0 +1,11 @@
+<app-header-navigation [isShowNavBar]="isShowNavBar"></app-header-navigation>
+<router-outlet></router-outlet>
+ <!-- <div
+  class="svg-sprite"
+  [inlineSVG]="'/assets/images/svg-sprite/svg-sprite.svg'"
+  class="svg-sprite"
+></div>  -->
+
+<div class="loading-overlay" *ngIf="servicerequestGuard.isLoading">
+  <app-loader></app-loader>
+</div>

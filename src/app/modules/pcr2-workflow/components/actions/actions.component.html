@@ -1,0 +1,44 @@
+<div
+  (click)="onActionDeselect()"
+  [hidden]="!isActionSelected"
+  [class.selected]="isActionSelected"
+>
+  <span>{{ selectedActionName }}</span>
+  <img class="check-mark" src="assets/images/svgs/check-mark.svg" />
+</div>
+
+<kendo-listview [data]="actionData" *ngIf="!isActionSelected && !loader">
+  <ng-template kendoListViewHeaderTemplate>
+    <div class="header"><div class="title">Action Name</div></div>
+  </ng-template>
+  <ng-template
+    kendoListViewItemTemplate
+    let-dataItem="dataItem"
+    let-index="index"
+  >
+    <div class="product-view k-widget">
+      <dl class="line-item">
+        <dd (click)="onActionClick(dataItem)" class="action-items">
+          {{ dataItem.actionName }}
+        </dd>
+      </dl>
+    </div>
+  </ng-template>
+</kendo-listview>
+
+<kendo-listview *ngIf="!isActionSelected && loader">
+  <ng-template kendoListViewHeaderTemplate>
+    <div class="header"><div class="title">Action Name</div></div>
+    <div class="loader"><app-loader size="20"></app-loader></div>
+  </ng-template>
+</kendo-listview>
+
+<div *ngIf="selectedAction && isActionSelected && !loader">
+  <app-cause
+    [actionId]="selectedAction.actionId"
+    (selectedCauseData)="seletedPartCauseAction($event, selectedAction)"
+    [causeData]="causeData"
+    [selectedCause]="selectedCause"
+  >
+  </app-cause>
+</div>

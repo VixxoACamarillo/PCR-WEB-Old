@@ -1,0 +1,67 @@
+<div class="notes" *ngIf="!loader">
+  <div class="note-container">
+    <div class="saved-note" *ngIf="savedNote">{{ savedNote }}<br /></div>
+    <app-button
+      type="primary"
+      (clicked)="addNote()"
+      [label]="savedNote ? 'Edit Note' : 'Add Note'"
+    ></app-button>
+  </div>
+  <div class="photos-container">
+    <app-service-request-attachments
+      [requirementLabelValue]=""
+      [resolutionNotesVisible]="false"
+      [attachmentsData]="attachmentsData"
+      [srData]="currentServiceRequest"
+      [cancelUpload]="cancelFileUpload"
+      (fileToUpload)="onFileRead($event)"
+      [addText]="addText"
+    ></app-service-request-attachments>
+    <app-modal
+      *ngIf="showFileUploadModal"
+      [requiredMessage]="false"
+      primaryButton="Close"
+      (onClose)="close($event)"
+      title="Invalid File Type"
+      width="95%"
+      [allowToSubmit]="true"
+    >
+      <div class="modal-text">{{ errorMessage.message }}</div>
+    </app-modal>
+    <app-modal
+      *ngIf="showLargeFile"
+      [requiredMessage]="false"
+      primaryButton="Close"
+      (onClose)="close($event)"
+      title=" Invalid File Size"
+      width="95%"
+      [allowToSubmit]="true"
+    >
+      <div class="modal-text">{{ sizeErrorMessage.message }}</div>
+    </app-modal>
+  </div>
+
+  <app-modal
+    *ngIf="openAddNoteModal"
+    title="New Note"
+    [allowToSubmit]="true"
+    [disableFooter]="false"
+    (onClose)="closeAddNoteModal($event)"
+    width="100%"
+    height="100%"
+    primaryButton="SAVE"
+  >
+    <div>
+      <app-textarea
+        class="pcr-note"
+        placeholder="Add your note here."
+        maxlength="1000"
+        [value]="savedNote"
+        (change)="setPcrNotes($event)"
+      >
+      </app-textarea>
+    </div>
+  </app-modal>
+</div>
+
+<app-loader class="loading-overlay" *ngIf="loader"></app-loader>

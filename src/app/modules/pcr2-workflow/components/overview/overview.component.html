@@ -1,0 +1,31 @@
+<!-- ng for by action  -->
+<div class="overview" *ngFor="let overview of overviewModel">
+  <div class="action">
+    <label> {{ overview.actionName }} </label>
+  </div>
+  <!-- ng for by action.parts  -->
+  <div class="overview-body" *ngFor="let part of overview.parts">
+    <div class="part-detail">
+      <div class="part-name">
+        <label> {{ part.name }} </label>
+        <input
+          *ngIf="overview.actionName === 'Replaced'"
+          type="number"
+          class="quantity"
+          [(ngModel)]="part.overviewPartQuantity"
+          (keypress)="onKeyPress($event)"
+          (keyup)="onKeyDown(part)"
+        />
+      </div>
+      <label>
+        {{ part.number }} <span *ngIf="part?.sku"> / {{ part.sku }} </span>
+      </label>
+    </div>
+    <label class="cause"> {{ part.cause.causeName }} </label>
+    <div class="tag" *ngIf="part.isReportedFix || part.isProactiveFix">
+      <span> &#10003; </span>
+      <span *ngIf="part.isReportedFix"> Solved Reported Issue </span>
+      <span *ngIf="part.isProactiveFix"> Proactive Fix </span>
+    </div>
+  </div>
+</div>

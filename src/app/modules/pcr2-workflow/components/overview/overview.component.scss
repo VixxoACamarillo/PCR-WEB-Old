@@ -1,0 +1,74 @@
+@import '../../../../../assets/styles/definitions';
+
+.overview {
+  padding-top: 5px;
+
+  .overview-body {
+    padding-left: 20px;
+    font-family: 'OpenSans-Bold', 'Open Sans Bold', 'Open Sans', sans-serif;
+    padding-bottom: 5px;
+    font-size: $f6;
+  }
+
+  .action {
+    font-size: $f5;
+    font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+    padding: 10px 0px 10px 10px;
+  }
+
+  .part-detail {
+    font-weight: 700;
+    color: $_coal;
+    text-align: left;
+    line-height: normal;
+
+    .part-name {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 5px;
+    }
+
+    .quantity {
+      justify-content: center;
+      width: 26px;
+      height: 22px;
+      padding: 0px 8px;
+      border-radius: 2px;
+      background-color: #f6f6f6;
+      outline: none;
+      color: #333333;
+      border: none;
+      text-align: center;
+      line-height: normal;
+      margin-right: 16px;
+    }
+  }
+
+  .cause {
+    color: $_stone;
+    text-align: left;
+    line-height: normal;
+  }
+
+  .tag {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 5px;
+    font-size: $f6;
+    font-weight: bold;
+    background-color: $_nickel;
+    box-sizing: border-box;
+    color: white;
+    margin-top: 5px;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

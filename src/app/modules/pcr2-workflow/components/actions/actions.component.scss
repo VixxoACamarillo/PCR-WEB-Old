@@ -1,0 +1,63 @@
+@import '../../../../../assets/styles/definitions';
+
+.header {
+  width: 100%;
+  background-color: #f6f6f6;
+  box-sizing: border-box;
+  font-family: 'OpenSans-Bold', 'Open Sans Bold', 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: $_coal;
+  text-align: left;
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+.action-items {
+  font-size: 14px;
+  padding: 8px 2px 8px 16px;
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+  color: #829191;
+  text-align: left;
+  line-height: normal;
+  cursor: pointer;
+  margin-left: 0;
+}
+
+.line-item {
+  border-bottom: 1px solid #eaeeee;
+  margin: 0px;
+  padding: 2px 0 2px 0;
+}
+
+.title {
+  font-size: 12px;
+  padding: 8px 2px 8px 16px;
+  text-transform: uppercase;
+}
+
+.selected {
+  padding: 8px 4px 8px 16px;
+  border-bottom: 1px solid #eaeeee;
+  background-color: #d7dcdc;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-style: italic;
+  color: $_coal;
+  line-height: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.check-mark {
+  height: 12px;
+  float: right;
+}
+
+.loader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

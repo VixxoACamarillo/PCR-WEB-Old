@@ -1,0 +1,10 @@
+@import '../../../../../assets/styles/definitions';
+
+.error-page-container {
+  .error-page-content-container {
+    text-align: center;
+    h2 {
+      font-size: $f3;
+    }
+  }
+}

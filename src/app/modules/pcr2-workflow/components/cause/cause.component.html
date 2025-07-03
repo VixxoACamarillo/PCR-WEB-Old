@@ -1,0 +1,33 @@
+<div
+  (click)="onCauseDeselect()"
+  [hidden]="!isCauseSelected"
+  [class.selected]="isCauseSelected"
+>
+  <span>{{ selectedCauseName }}</span>
+  <img class="check-mark" src="assets/images/svgs/check-mark.svg" />
+</div>
+<div *ngIf="!isCauseSelected">
+  <div class="header"><div class="title">Cause</div></div>
+  <div class="panelbar-wrapper" *ngFor="let cause of groupByParentCause">
+    <kendo-panelbar (stateChange)="onStateChange($event)">
+      <kendo-panelbar-item
+        [title]="cause.parentCauseName"
+        [expanded]="expandedItem === cause.parentCauseName"
+      >
+        <ng-template kendoPanelBarContent>
+          <div class="cause-items" *ngFor="let childCause of cause.childCause">
+            <div (click)="onCauseClick(childCause)" class="line-item">
+              <div
+                class="cause-parent"
+                *ngIf="cause.parentCauseName != childCause.causeName"
+              >
+                {{ childCause.causeName }}
+              </div>
+              <div>{{ childCause.causeDescription }}</div>
+            </div>
+          </div>
+        </ng-template>
+      </kendo-panelbar-item>
+    </kendo-panelbar>
+  </div>
+</div>

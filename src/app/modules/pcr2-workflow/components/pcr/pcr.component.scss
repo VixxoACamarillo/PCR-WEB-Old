@@ -1,0 +1,166 @@
+@import '../../../../../assets/styles/definitions';
+
+.pcr {
+  font-family: 'Open Sans Semibold', 'Open Sans', sans-serif;
+  font-size: 0.75em;
+  padding-top: 15px;
+
+  .part-heading {
+    font-weight: bold;
+    color: #023535;
+    text-align: center;
+    line-height: normal;
+  }
+
+  .part-detail {
+    background-color: $_platinum;
+    width: 100%;
+    display: inline-grid;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .toolbar-icon-disabled {
+    fill: gray;
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: sepia(100%);
+    -webkit-filter: sepia(100%);
+    filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: $_nickel;
+    -webkit-filter: grayscale(100%);
+  }
+
+  .pcr-inline {
+    display: flex;
+    background-color: $_platinum;
+    align-items: center;
+    justify-content: center;
+  }
+  .img-pointer {
+    cursor: pointer;
+  }
+
+  .part-number {
+    font-weight: bold;
+    color: $_stone;
+    text-align: center;
+    line-height: normal;
+    display: block;
+  }
+
+  .selected {
+    padding: 8px 4px 8px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid $_platinum;
+    background-color: $_quartz;
+    box-sizing: border-box;
+    font-style: italic;
+    color: #333333;
+    line-height: normal;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .check-mark {
+    height: 12px;
+    float: right;
+    padding-right: 4px;
+  }
+
+  .part-copy {
+    padding: 8px;
+  }
+
+  .loading-overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    z-index: 10000;
+
+    app-loader {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+  .pcr-error-alert {
+    padding: 14px 20px 20px;
+    .pcr-contain-inline {
+      white-space: pre-line;
+    }
+  }
+
+  .k-dialog {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+
+    .k-dialog-content .modal-body-content {
+      padding: 5px;
+    }
+
+    .k-dialog-buttongroup {
+      padding: 4px;
+      justify-content: space-around;
+      border-top: none;
+      app-button {
+        .k-button {
+          border-radius: 0;
+          font-weight: 700;
+        }
+        .k-button.secondary {
+          margin: 0;
+          background-color: $_olive !important;
+          color: $_white !important;
+        }
+        .k-button.k-primary {
+          background-color: $_stone !important;
+        }
+      }
+    }
+  }
+
+  .delete-confirmation {
+    background-color: $_white;
+    display: inline-grid;
+    justify-items: center;
+    width: 100%;
+
+    .delete-header {
+      font-weight: 700;
+      font-size: 16px;
+      padding: 10px;
+    }
+
+    .delete-part-name {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .delete-part-number {
+      font-weight: 600;
+      font-size: 12px;
+      color: $_stone;
+    }
+
+    .delete-message {
+      font-size: 13px;
+      padding: 10px;
+    }
+  }
+}

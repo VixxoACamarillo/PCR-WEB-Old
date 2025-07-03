@@ -1,0 +1,15 @@
+<app-loader *ngIf="!unsupportedBrowser"></app-loader>
+<app-modal
+  *ngIf="unsupportedBrowser"
+  title="Unsupported Browser"
+  primaryButton="Okay"
+  [allowToSubmit]="true"
+  (onClose)="closeBrowserModal()"
+  width="840"
+>
+  <div class="modal-subtitle">
+    The browser you are using is not supported by PCR and you may experience
+    limited functionality. Google Chrome and Safari are the supported browsers.
+    Click "Okay" to continue using this browser.
+  </div>
+</app-modal>

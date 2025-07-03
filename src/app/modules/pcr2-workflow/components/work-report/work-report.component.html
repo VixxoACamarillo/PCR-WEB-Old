@@ -1,0 +1,77 @@
+<div
+  (click)="onActionDeselect()"
+  [hidden]="!isActionSelected"
+  [class.selected]="isActionSelected"
+></div>
+<div class="work-report">
+  <span class="header-text"
+    >Select all work which solved the partner reported issue "<b>{{
+      reportedIssue
+    }}</b
+    >"</span
+  >
+  <span class="note-text"
+    >Note: If the reported issue could not be found, leave blank.</span
+  >
+  <kendo-listview [data]="takenActionList | orderByLevel: 'partId'">
+    <ng-template
+      kendoListViewItemTemplate
+      let-dataItem="dataItem"
+      let-index="index"
+    >
+      <div class="product-view k-widget">
+        <dl class="line-item">
+          <dd
+            (click)="onClick(dataItem)"
+            [ngClass]="
+              dataItem.disableActionItems
+                ? 'action-items-disable'
+                : 'action-items'
+            "
+          >
+            {{ dataItem.partAction }}
+            <img
+              class="check-mark"
+              src="assets/images/svgs/check-mark.svg"
+              *ngIf="dataItem.isSelected"
+            />
+          </dd>
+        </dl>
+      </div>
+    </ng-template>
+  </kendo-listview>
+  <span class="header-text"
+    >Select all work which was done <b>proactively</b></span
+  >
+  <span class="note-text"
+    >Note: Proactive work is work that does not directly relate to an issue with
+    the machine and is done to prevent a future call.</span
+  >
+  <kendo-listview [data]="proactiveActionList | orderByLevel: 'partId'">
+    <ng-template
+      kendoListViewItemTemplate
+      let-dataItem="dataItem"
+      let-index="index"
+    >
+      <div class="product-view k-widget">
+        <dl class="line-item">
+          <dd
+            (click)="onClick(dataItem)"
+            [ngClass]="
+              dataItem.disableProactiveItems
+                ? 'action-items-disable'
+                : 'action-items'
+            "
+          >
+            {{ dataItem.partAction }}
+            <img
+              class="check-mark"
+              src="assets/images/svgs/check-mark.svg"
+              *ngIf="dataItem.isSelected"
+            />
+          </dd>
+        </dl>
+      </div>
+    </ng-template>
+  </kendo-listview>
+</div>

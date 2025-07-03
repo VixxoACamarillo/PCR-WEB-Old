@@ -1,0 +1,86 @@
+<div class="workflow-container container-fluid">
+  <div class="new-pcr-detail">
+    <main class="detail">
+      <div class="detail-content">
+        <div class="new-pcr-header">
+          <div class="pcr-header">
+            <div class="new-pcr-title-container">
+              <div class="pcr-title">
+                <app-tab-selector
+                  [selectedTab]="selectedTab"
+                  [disableNotesTab]="disableNotesTab"
+                  [disableOverviewTab]="disableOverviewTab"
+                  [disablePcrTab]="disablePcrTab"
+                  (tabClicked)="onTabClicked($event)"
+                ></app-tab-selector>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="pcr-items">
+          <div *ngIf="selectedTab == 0">
+            <app-parts (PartSelected)="OnPartsSelected($event)"></app-parts>
+          </div>
+          <div *ngIf="selectedTab == 1">
+            <app-pcr (disableNextButton)="disableNextButton($event)"></app-pcr>
+          </div>
+          <div *ngIf="selectedTab == 2">
+            <app-work-report></app-work-report>
+          </div>
+          <div *ngIf="selectedTab == 3">
+            <app-overview (submission)="onOverviewClick($event)"></app-overview>
+          </div>
+          <div *ngIf="selectedTab == 4"><app-notes></app-notes></div>
+        </section>
+        <!--Validation Errors-->
+
+        <div class="button-container">
+          <div *ngIf="selectedTab > 0">
+            <div>
+              <app-button
+                (clicked)="onBack()"
+                [iconLeft]="true"
+                type="secondary"
+                label="Back"
+              ></app-button>
+            </div>
+          </div>
+
+          <div *ngIf="selectedTab == 1">
+            <div>
+              <app-button
+                (clicked)="onNext()"
+                type="primary"
+                label="Next"
+                [disabled]="!isNextButtonDisabled"
+              ></app-button>
+            </div>
+          </div>
+
+          <div *ngIf="selectedTab == 0 || (selectedTab > 1 && selectedTab < 4)">
+            <div>
+              <app-button
+                (clicked)="onNext()"
+                type="primary"
+                label="Next"
+                [disabled]="!isNextButtonDisabled"
+              ></app-button>
+            </div>
+          </div>
+
+          <div class="button-holder" *ngIf="selectedTab === 4">
+            <div class="continue">
+              <app-button
+                (clicked)="onDone()"
+                type="primary"
+                label="Done"
+              ></app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="loading-overlay" *ngIf="loader"><app-loader></app-loader></div>

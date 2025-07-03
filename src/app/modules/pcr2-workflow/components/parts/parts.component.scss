@@ -1,0 +1,318 @@
+@import '../../../../../assets/styles/definitions';
+
+::ng-deep 
+.k-selected {
+  background-color: $_honeydew;
+  color: $_onyx;
+}
+
+::ng-deep  .k-grid tr.k-selected > td {
+  background: $_honeydew;
+  color: $_onyx;
+}
+
+::ng-deep .k-checkbox:checked {
+  border-color: #788536;
+  color: white;
+  background-color: #788536; 
+}
+
+@media screen and (max-width: 1024px) {
+  .parts-search-bar {
+    padding-top: 10px !important;
+  }
+
+  .grid {
+    padding: 5px;
+  }
+
+  ::ng-deep .vixxo-grid-component-container .k-widget .k-grid-content tbody tr {
+    min-height: 94px;
+    width: calc(100% - 24px);
+    border: 0px !important;
+    border-radius: 0px !important;
+    display: flex;
+    margin: 0px !important;
+    padding: 0px !important;
+    box-sizing: none !important;
+    overflow: auto;
+    position: relative;
+    border-bottom: 1px solid $_nickel;
+  }
+  ::ng-deep .k-checkbox-label::before,
+  .k-checkbox-label::after {
+    font-size: $f5;
+    font-family: 'WebComponentsIcons', monospace;
+    box-sizing: border-box;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 10px !important;
+    background-color: $_olive;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  ::ng-deep .k-grid-header {
+    display: none;
+  }
+  ::ng-deep
+    .vixxo-grid-component-container
+    .k-widget.k-grid
+    tr.k-state-selected
+    > td {
+    background-color: $_olive;
+  }
+  ::ng-deep
+    .vixxo-grid-component-container
+    .k-widget.k-grid
+    tr.k-state-selected {
+    background-color: $_olive;
+  }
+  ::ng-deep .k-checkbox:checked + .k-checkbox-label::after {
+    border: none;
+    background-color: $_olive;
+    top: 100%;
+    border-radius: 10px !important;
+  }
+
+  ::ng-deep
+    .vixxo-grid-component-container
+    tbody
+    tr
+    td
+    div.card-element-value {
+    color: $_coal;
+    font-weight: bold;
+    font-size: 14;
+    font-family: 'Biotif';
+  }
+  ::ng-deep .k-grid-header,
+  .k-grid-toolbar,
+  .k-grouping-header,
+  .k-grid-add-row,
+  .k-grid-footer {
+    color: #656565;
+    background-color: #f6f6f6;
+    display: none !important;
+  }
+  ::ng-deep .k-grid-header,
+  .k-header,
+  .k-grid-header-wrap,
+  .k-grouping-header,
+  .k-grouping-header .k-group-indicator,
+  .k-grid td,
+  .k-grid-footer,
+  .k-grid-footer-wrap,
+  .k-grid-content-locked,
+  .k-grid-footer-locked,
+  .k-grid-header-locked,
+  .k-filter-row > td,
+  .k-filter-row > th {
+    border-color: rgba(0, 0, 0, 0.08);
+    display: none !important;
+  }
+
+  ::ng-deep .vixxo-grid-component-container .k-widget .k-grid-content tbody tr {
+    min-height: 94px;
+    width: calc(100% - 24px);
+    border: 1px solid $_nickel;
+    border-radius: 3px;
+    display: flex;
+    margin: 8px 0;
+    box-sizing: border-box;
+    overflow: auto;
+    position: relative;
+    padding: 0px !important;
+  }
+  ::ng-deep .vixxo-grid-component-container .k-widget .k-grid-content tbody tr {
+    min-height: 70px !important;
+    width: calc(100% - 24px);
+    border: 1px solid $_nickel;
+    border-radius: 3px;
+    display: flex;
+    margin: 8px 0;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: auto;
+    position: relative;
+    padding-bottom: 4px !important;
+    margin-bottom: 2px !important;
+  }
+  ::ng-deep .k-checkbox:hover + .k-checkbox-label::after {
+    color: white !important;
+    background: $_olive !important;
+  }
+}
+
+::ng-deep .k-grid-toolbar {
+  padding: 8px 8px;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: inherit;
+  text-overflow: clip;
+  cursor: default;
+  display: none !important;
+}
+
+::ng-deep .app-search-bar .search-section .filter-button {
+  font-weight: 900;
+  font-size: 0.625rem;
+  line-height: 1;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  margin-right: 1rem;
+  display: flex;
+  min-width: 80px;
+  height: 2rem;
+  line-height: 2rem;
+  border: 1px solid $_platinum;
+  color: $_coal;
+  padding: 0;
+  align-items: center;
+  cursor: pointer;
+  display: none !important;
+}
+::ng-deep .app-search-bar .search-section input {
+  background-image: url(https://vixxolink-cdn.s3.amazonaws.com/assets/svgs/input-search.svg);
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  border: 1px solid $_platinum;
+  background-color: $_platinum !important;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1;
+  color: $_coal;
+  width: 100%;
+  height: 2rem;
+  padding: 0 0.5rem 0 2rem;
+  outline: 0;
+}
+
+@media screen and (min-width: 1024px) {
+
+  ::ng-deep .k-checkbox:checked:focus {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep .k-grid .k-master-row > td:focus {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep .k-grid td {
+    font-size: 12 !important;
+    padding: 18px 15px !important;
+    border: 0 !important;
+    border-bottom: inherit !important;
+    color: $_stone !important;
+    font-family: 'Biotif' !important;
+  }
+
+  ::ng-deep .k-grid td  {
+    padding: 18px 15px;
+    border-bottom: 1px solid #afbaba;
+    border-top: 1px solid #afbaba;
+    border-width: inherit;
+  }
+  
+  ::ng-deep .k-grid tr {
+    border-bottom: 1px solid #afbaba;
+  }
+  
+  ::ng-deep tr td:first-child {
+    border-left: 1px solid #afbaba !important;
+    border-width: inherit;
+  }
+  
+  ::ng-deep tr td:last-child {
+    border-right: 1px solid #afbaba !important;
+    border-width: inherit;
+  }
+  
+  ::ng-deep .k-header {
+    background-color: #eaeeee !important;
+    border-color: #afbaba !important;
+    font-weight: 900 !important;
+    line-height: 1;
+    letter-spacing: .08rem;
+    text-transform: uppercase;
+    text-align: left;
+    border-right: 0;
+    text-overflow: ellipsis;
+    color: #203535;
+    padding: 18px 15px !important;
+    font-size: .625rem;
+    border: 1px solid #afbaba !important;
+  }
+
+  ::ng-deep .k-grid-header .k-i-sort-asc-small {
+    color:  #788536 !important;
+  }
+
+  ::ng-deep .k-grid-header .k-i-sort-desc-small {
+    color:  #788536 !important;
+  }
+
+  ::ng-deep .k-checkbox:indeterminate {
+    background-image: none !important;
+  }
+}
+
+@media  (max-width: 1024px) {
+  ::ng-deep .k-checkbox:checked:focus {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep .k-grid .k-master-row > td:focus {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep .k-checkbox{
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50%;
+    border-color: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  ::ng-deep .card-element-label {
+    display: none;
+  }
+
+  ::ng-deep colgroup {
+    display: none;
+  }
+
+  ::ng-deep tr {
+    font-size: 12px !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::ng-deep .k-grid td {
+    padding: 8px 0px 3px 8px !important;
+  }
+
+  ::ng-deep .k-grid td:nth-child(2) {
+    padding-right: 44px !important;
+  }
+
+  ::ng-deep tr td:last-child {
+    padding: 0 0px 16px 8px !important;
+  }
+
+  ::ng-deep tr td:first-child {
+    position: absolute;
+    right: 6px;
+    top: 12px;
+  }
+
+}

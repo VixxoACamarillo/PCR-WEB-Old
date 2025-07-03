@@ -1,0 +1,87 @@
+@import '../../../../../assets/styles/definitions';
+
+.work-report {
+  font-family: 'Open Sans Semibold', 'Open Sans', sans-serif;
+  font-size: 0.75em;
+  padding-top: 15px;
+
+  .header-text {
+    font-weight: normal;
+    color: $_coal;
+    text-align: center;
+    line-height: normal;
+    display: block;
+    background: rgba(234, 238, 238, 1);
+    padding: 6px !important;
+    border-top: groove;
+  }
+
+  .note-text {
+    font-weight: normal;
+    color: $_stone;
+    text-align: center;
+    line-height: normal;
+    display: block;
+    background: rgba(246, 246, 246, 1);
+    padding: 4px 6px;
+  }
+
+  .action-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 8px 2px 8px 16px;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+    color: $_stone;
+    text-align: left;
+    line-height: normal;
+    cursor: pointer;
+    margin-left: 0;
+  }
+  .action-items-disable {
+    padding: 8px 2px 8px 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+    color: $_nickel;
+    text-align: left;
+    line-height: normal;
+    cursor: pointer;
+    margin-left: 0;
+    pointer-events: none;
+    background-color: $_platinum;
+  }
+  .line-item {
+    margin: 0px;
+  }
+  .check-mark {
+    margin: 4px;
+    height: $f6;
+    float: right;
+    padding-right: 6px;
+  }
+
+  .loading-overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    z-index: 10000;
+
+    app-loader {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+}
