@@ -1,0 +1,56 @@
+@import 'definitions';
+
+.alert-container {
+  user-select: none;
+
+  &.divider {
+    border-top: 1px solid $color-container-border;
+    height: calc(1rem + 50px);
+    padding: 13px 30px;
+  }
+
+  &.multiline {
+    margin: 10px;
+  }
+
+  &.modal {
+    padding: 15px 30px;
+    border-bottom: 1px solid $color-modal-divider;
+  }
+
+  .message {
+    align-items: flex-start;
+    background-color: $color-priority-1;
+    border-radius: 3px;
+    color: $color-inverted-text;
+    display: flex;
+    font-size: $f6;
+    min-height: calc(1.2rem + 18px);
+    justify-content: space-between;
+    padding: 12px 10px 10px;
+
+    .text {
+      span {
+        @include type-bold-text;
+      }
+    }
+
+    .cta {
+      @include type-small-caps;
+      align-self: center;
+      text-align: right;
+      cursor: pointer;
+      margin: 0;
+      padding-right: 10px;
+      display: inline;
+      white-space: nowrap;
+
+      .icon {
+        height: 8px;
+        width: 8px;
+        margin: 0 0 0 10px;
+        display: inline-block;
+      }
+    }
+  }
+}
