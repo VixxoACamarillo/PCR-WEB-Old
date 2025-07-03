@@ -1,0 +1,67 @@
+@import '../../../../assets/styles/colors';
+
+.container-asset-details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  width: 95%;
+  @media screen and (max-width: 768px) {
+    display: inline-block;
+  }
+  div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    span {
+      margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: inline-block;
+      width: 50%;
+      margin-top: 10px;
+    }
+  }
+  span {
+    font-weight: 900;
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
+
+.asset-details-grid {
+  kendo-grid.k-widget.k-grid {
+    padding-left: 20px;
+  }
+}
+.remove {
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  color: $color-light-text;
+
+  app-icon {
+    width: 14px;
+    height: 24px;
+    position: absolute;
+    right: -35px;
+  }
+
+  @media screen and (max-width: 768px) {
+    text-align: left;
+    margin-left: 0;
+
+    app-icon {
+      position: relative;
+      right: 0;
+    }
+  }
+}
+
+.hide {
+  opacity: 0;
+}

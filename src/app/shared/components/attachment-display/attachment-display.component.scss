@@ -1,0 +1,82 @@
+@import '../../../../assets/styles/definitions';
+
+:host {
+  width: 100%;
+}
+
+.quote-attachments {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  .attachment-header {
+    margin: 20px 0 30px;
+    font-size: $f3;
+  }
+  .attachments {
+    .attachment {
+      margin-bottom: 0.75rem;
+      .download {
+        color: inherit;
+        border: 1px solid $color-container-border;
+        padding: 8px;
+        cursor: pointer;
+        .file-details {
+          align-items: center;
+          display: flex;
+          font-weight: bolder;
+          .file-icon {
+            color: $color-attachments-icon-background-hover;
+            position: relative;
+            margin-right: 10px;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            .file {
+              width: 2rem;
+              height: 2rem;
+            }
+            .extension {
+              display: flex;
+              letter-spacing: 0.08rem;
+              text-transform: uppercase;
+              position: absolute;
+              bottom: 0;
+              height: 1rem;
+              width: 2rem;
+              align-items: center;
+              justify-content: center;
+              font-size: $f7;
+              font-weight: 900;
+              line-height: 1;
+              color: $_coal;
+            }
+          }
+          .metadata {
+            display: flex;
+            font-size: $f6;
+            font-weight: 400;
+            flex-grow: 1;
+            flex-direction: column;
+            .filesize {
+              color: $_stone;
+              font-size: 0.625rem;
+              padding-top: 2px;
+            }
+            .filename {
+              font-weight: 900;
+            }
+          }
+          .k-icon.k-i-x {
+            color: $_nickel;
+            font-size: $f3;
+            cursor: pointer;
+          }
+        }
+        &:hover {
+          background-color: $color-attachments-background-hover;
+        }
+      }
+    }
+  }
+}

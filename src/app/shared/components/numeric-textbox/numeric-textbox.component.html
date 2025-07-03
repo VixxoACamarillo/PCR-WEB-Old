@@ -1,0 +1,13 @@
+<kendo-numerictextbox
+  id="{{ inputId }}"
+  [min]="minimumValue"
+  [max]="maximumValue"
+  [decimals]="decimalsValue"
+  [spinners]="false"
+  [format]="format"
+  [(ngModel)]="value"
+  (keydown)="onKeyDown($event)"
+  (ngModelChange)="valueChanged($event)"
+  [autoCorrect]="true"
+>
+</kendo-numerictextbox>

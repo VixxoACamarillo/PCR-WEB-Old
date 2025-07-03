@@ -1,0 +1,11 @@
+@import 'definitions';
+
+.k-numerictextbox {
+  .k-numeric-wrap {
+    border-color: $color-input-border;
+
+    & > .k-input {
+      padding-bottom: 0;
+    }
+  }
+}

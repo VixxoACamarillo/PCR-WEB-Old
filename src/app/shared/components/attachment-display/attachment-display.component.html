@@ -1,0 +1,91 @@
+<section class="quote-attachments">
+  <div class="attachments">
+    <div
+      class="attachment"
+      *ngFor="let attachment of attachmentsData; let i = index"
+    >
+      <div class="download" (click)="openFileNewTab(attachment)">
+        <div class="file-details">
+          <div class="file-icon">
+            <div
+              *ngIf="
+                !isQuote &&
+                  (isImageFileExtension(
+                    parseFileExtensionFromKey(attachment?.displayName)
+                  ) ||
+                    isImageFileExtension(
+                      parseFileExtensionFromKey(attachment?.key)
+                    ));
+                then thumbnail;
+                else fileIcon
+              "
+            ></div>
+            <ng-template #thumbnail>
+              <div
+                *ngIf="
+                  attachment?.cloudStorageId;
+                  then invoiceAttachmentImage;
+                  else srAttachmentImage
+                "
+              ></div>
+              <ng-template #invoiceAttachmentImage>
+                <img [src]="attachment?.cloudStorageId" class="file" />
+              </ng-template>
+              <ng-template #srAttachmentImage>
+                <img [src]="attachment?.url" class="file" />
+              </ng-template>
+            </ng-template>
+            <ng-template #fileIcon>
+              <app-icon class="file" iconName="file"></app-icon>
+            </ng-template>
+            <div class="extension">
+              <div
+                *ngIf="isQuote; then quoteExtension; else invoiceExtension"
+              ></div>
+              <ng-template #quoteExtension>
+                <div>{{ parseFileExtensionFromKey(attachment?.filename) }}</div>
+              </ng-template>
+              <ng-template #invoiceExtension>
+                <div>
+                  {{ parseFileExtensionFromKeyInvoice(attachment?.key) }}
+                  {{
+                    parseFileExtensionFromKeyInvoice(attachment?.displayName)
+                  }}
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div class="metadata">
+            <div *ngIf="isQuote; then quoteMeta; else invoiceMeta"></div>
+            <ng-template #quoteMeta>
+              <div class="filename">{{ attachment?.filename }}</div>
+              <div class="filesize">{{ formatBytes(attachment?.size) }}</div>
+            </ng-template>
+            <ng-template #invoiceMeta>
+              <div class="filename">
+                {{ parseFileNameFromKeyInvoice(attachment?.key) }}
+                {{ parseFileNameFromKeyInvoice(attachment?.displayName) }}
+              </div>
+              <div
+                *ngIf="displayAttachmentSize(attachment?.size)"
+                class="file-size"
+              >
+                {{ attachment?.size }}
+              </div>
+            </ng-template>
+          </div>
+          <div
+            *ngIf="
+              (isQuote || isInvoiceAttachment(attachment)) &&
+              (checkAttachmentsLength() && !isInvoiceReview)
+            "
+            class="remove-btn"
+            (click)="remove(attachment)"
+          >
+            <span class="k-icon k-i-x"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,462 @@
+@import '../../../../../node_modules/angular-calendar/css/angular-calendar.css';
+@import 'definitions';
+
+.calendar-selection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  .month-selection {
+    display: flex;
+    flex-grow: 1;
+
+    .buttons {
+      display: flex;
+      .btn {
+        cursor: pointer;
+        &.today {
+          margin: 0 5px;
+          background-color: #afbaba;
+          color: #012424;
+          border: #afbaba solid 1px;
+          border-radius: 10px;
+          outline: 0;
+        }
+        &.controls {
+          margin-top: 4px;
+          position: relative;
+
+          &::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            position: absolute;
+          }
+
+          &.prev::before {
+            border-color: transparent $color-vixxo-primary transparent
+              transparent;
+            border-width: 8.5px 18px 8.5px 0;
+          }
+          &.next::before {
+            border-color: transparent transparent transparent
+              $color-vixxo-primary;
+
+            border-width: 8.5px 0 8.5px 18px;
+          }
+        }
+      }
+    }
+
+    .date {
+      margin-left: 40px;
+      margin-right: 20px;
+      font-size: $f3;
+      color: $color-dark-text;
+
+      @include composite-responsive-desktop {
+        &.week,
+        &.day {
+          width: 60%;
+        }
+      }
+
+      @include composite-responsive-large-desktop {
+        &.week,
+        &.day {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .calendar-type {
+    display: flex;
+    align-items: center;
+
+    @include composite-responsive-desktop {
+      align-items: flex-start;
+    }
+
+    @include composite-responsive-large-desktop {
+      align-items: center;
+    }
+
+    .btn {
+      cursor: pointer;
+      font-size: 18px;
+      color: $color-light-text;
+
+      &:not(:last-child) {
+        margin-right: 24px;
+      }
+
+      &.active {
+        color: $color-vixxo-primary;
+        border-bottom: 1px solid $color-vixxo-primary;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.calendar-view {
+  .cal-month-view {
+    .cal-header {
+      text-align: left;
+    }
+
+    .cal-days {
+      border: none;
+
+      .cal-cell-row {
+        border: none;
+
+        .cal-day-cell {
+          border: none;
+
+          &.cal-in-month.cal-has-events {
+            cursor: default;
+          }
+
+          .cal-cell-top {
+            flex-direction: column;
+            justify-content: space-between;
+            display: flex;
+            padding: 0 0 3px 1px;
+
+            .cal-day-number {
+              font-size: inherit;
+              opacity: 0.8;
+              float: left;
+              color: $color-dark-text;
+              font-weight: bold;
+              width: 100%;
+              border-radius: 100px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              padding-left: 4px;
+              position: relative;
+              z-index: 1;
+            }
+          }
+
+          &.cal-today {
+            background-color: inherit;
+
+            .cal-day-number {
+              background-color: #d7d7d7;
+
+              &::after {
+                content: 'Today';
+                font-weight: normal;
+                font-size: $f6;
+                margin-left: 8px;
+              }
+            }
+          }
+
+          .sr-info {
+            display: flex;
+            flex-direction: column;
+
+            .sr-title {
+              color: $color-dark-text;
+              font-weight: bold;
+              margin-bottom: 8px;
+            }
+          }
+          .cal-events {
+            flex: none;
+            margin: 0;
+
+            .cal-event {
+              width: 20px;
+              margin: 2px 0;
+              height: 20px;
+              border-radius: 100px;
+              position: relative;
+              cursor: pointer;
+              font-size: $f6;
+              color: white;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: bold;
+
+              &:not(:last-child) {
+                margin-right: 4%;
+              }
+
+              .cal-day-number {
+                margin: 0;
+                padding-top: 4px;
+              }
+
+              &.first-elem {
+                border-radius: 100px 0 0 100px;
+              }
+
+              &.last-elem {
+                border-radius: 0 100px 100px 0;
+              }
+
+              &.middle-elem {
+                border-radius: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cal-out-month {
+      opacity: 0.3;
+
+      .cal-event {
+        opacity: 1;
+      }
+    }
+
+    .cal-open-day-events {
+      background-color: #ededed;
+      box-shadow: none;
+
+      & > div {
+        margin-bottom: 12px;
+
+        .cal-event {
+          display: none;
+          height: 20px;
+          width: 20px;
+        }
+
+        mwl-calendar-event-title {
+          display: none;
+        }
+
+        .cal-event-actions {
+          .cal-event-action {
+            margin-left: 4px;
+            display: flex;
+          }
+
+          .priority {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: $f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            background-color: #616161;
+            margin-right: 6px;
+            position: relative;
+            bottom: 3px;
+
+            &.P1,
+            &.C,
+            &.Critical {
+              background-color: #e10000;
+            }
+            &.P2,
+            &.H,
+            &.High {
+              background-color: #ffc800;
+            }
+            &.P3,
+            &.P3N,
+            &.M,
+            &.Medium {
+              background-color: #3278ff;
+            }
+            &.VH,
+            &.U,
+            &.M,
+            &.PM,
+            &.LE,
+            &.P4 {
+              background-color: #9628eb;
+            }
+          }
+
+          .sr-title {
+            font-size: 18px;
+            font-weight: bold;
+          }
+
+          .sr-number {
+            font-size: $f5;
+            color: $color-light-text;
+          }
+        }
+      }
+    }
+  }
+
+  &.small-calendar {
+    .cal-month-view {
+      .cal-out-month {
+        visibility: hidden;
+      }
+
+      .cal-header {
+        .cal-cell {
+          font-size: $f6;
+          padding: 0 0 14px 0;
+          text-align: center;
+        }
+      }
+
+      .cal-days {
+        .cal-cell-row {
+          &:hover {
+            background-color: $_white;
+          }
+          .cal-day-cell {
+            &:hover {
+              background-color: $_white;
+            }
+            min-height: 55px;
+
+            .cal-cell-top {
+              padding: 0;
+              min-height: 45px;
+              align-items: center;
+              justify-content: flex-start;
+              cursor: pointer;
+
+              .cal-day-number {
+                padding: 0;
+                font-size: $f6;
+                font-weight: 300;
+                opacity: 1;
+                margin: 0 0 8px;
+                height: 24px;
+                width: 24px;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+
+            &.cal-today {
+              background-color: inherit;
+
+              .cal-day-number {
+                background-color: #afbaba;
+                padding-left: 8px;
+
+                &::after {
+                  content: '';
+                }
+              }
+            }
+
+            .cal-events {
+              justify-content: center;
+              flex-direction: row;
+              width: 20px;
+
+              .small-cal-event {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                border: none;
+
+                &:not(:last-child) {
+                  margin-right: 4px;
+                }
+              }
+            }
+
+            &.cal-open {
+              background-color: $_white;
+
+              .cal-cell-top.user-selected {
+                .cal-day-number {
+                  background-color: #2c7b80;
+                  color: $_white;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .cal-open-day-events {
+        display: none;
+      }
+    }
+  }
+  .cal-week-view {
+    .cal-day-headers,
+    .cal-header:not(:last-child) {
+      border: none;
+    }
+    .cal-day-headers {
+      margin-bottom: 24px;
+
+      .cal-header {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+
+        b {
+          margin-bottom: -10px;
+        }
+      }
+    }
+    .cal-ends-within-week .cal-event {
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
+    }
+
+    .cal-starts-within-week .cal-event {
+      border-top-left-radius: 100px;
+      border-bottom-left-radius: 100px;
+    }
+
+    .cal-event {
+      border-radius: 5px;
+
+      .cal-event-action {
+        color: #ffffff;
+        display: flex;
+        font-weight: bold;
+
+        span {
+          margin: 0 4px;
+        }
+      }
+
+      mwl-calendar-event-title {
+        display: none;
+      }
+    }
+  }
+
+  .cal-day-view {
+    .cal-hour-rows {
+      overflow-x: auto;
+    }
+
+    .cal-event {
+      border-radius: 5px;
+
+      .cal-event-action {
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+      }
+
+      mwl-calendar-event-title {
+        display: none;
+      }
+    }
+  }
+}

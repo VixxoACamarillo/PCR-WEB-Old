@@ -1,0 +1,128 @@
+<div class="item-content">
+  <div class="description" *ngIf="!isTotal">
+    <div class="column" *ngFor="let column of invoiceItem.columnConfig.desc">
+      <div class="header">
+        <p>{{ column.label }}</p>
+      </div>
+
+      <div class="row" *ngFor="let row of invoiceItem.parts">
+        <div *ngIf="column.type === 'main'; else miniColumn">
+          <div class="part" *ngIf="row.id; else description">
+            <div class="check">
+              <input
+                type="checkbox"
+                class="k-checkbox"
+                id="{{ row.uuid }}"
+                [(ngModel)]="row.selected"
+                (change)="onPartCheck()"
+              />
+              <label class="k-checkbox-label" for="{{ row.uuid }}"></label>
+            </div>
+            <div class="part-desc">
+              <div class="part-title">
+                {{ row.description }} <app-icon [iconName]="'edit'"></app-icon>
+              </div>
+              <div class="part-desc">{{ row.partNumber }}</div>
+            </div>
+            <div class="edit"></div>
+          </div>
+
+          <ng-template #description>
+            <kendo-dropdownlist
+              *ngIf="column.subtype === 'selectable'; else editable"
+              name="serviceRequestType"
+              id="serviceRequestType"
+              class="select-list-combobox"
+            >
+            </kendo-dropdownlist>
+
+            <ng-template #editable>
+              <div class="part-title">
+                {{ row.description }} <app-icon [iconName]="'edit'"></app-icon>
+              </div>
+            </ng-template>
+          </ng-template>
+        </div>
+
+        <ng-template #miniColumn>
+          <div class="span editable" *ngIf="column.type === 'editable'">
+            <input
+              *ngIf="!column.currency; else currency"
+              class="quantity"
+              type="number"
+              min="0"
+              step="1"
+              onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+              [(ngModel)]="row[column.accessor]"
+            />
+
+            <ng-template #currency>
+              <kendo-numerictextbox
+                class="{{
+                  !row[column.accessor] && row[column.accessor] !== 0
+                    ? 'no-cost'
+                    : ''
+                }}"
+                [format]="'c2'"
+                [min]="0"
+                [(value)]="row[column.accessor]"
+              ></kendo-numerictextbox>
+              <small *ngIf="!row[column.accessor] && row[column.accessor] !== 0"
+                >Please enter cost</small
+              >
+            </ng-template>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="total" *ngIf="isTotal">
+    <div class="column" *ngFor="let column of invoiceItem.columnConfig.total">
+      <div class="header">
+        <p>{{ column.label }}</p>
+      </div>
+
+      <div
+        class="row"
+        *ngFor="let row of invoiceItem.parts; let $index = index"
+      >
+        <div
+          class="span editable"
+          *ngIf="column.type === 'editable'; else nonEditable"
+        >
+          <kendo-numerictextbox
+            class="{{
+              !row[column.accessor] && row[column.accessor] !== 0
+                ? 'no-cost'
+                : ''
+            }}"
+            [format]="'c2'"
+            [min]="0"
+            [(value)]="row[column.accessor]"
+          ></kendo-numerictextbox>
+          <small *ngIf="!row[column.accessor] && row[column.accessor] !== 0"
+            >Please enter cost</small
+          >
+        </div>
+
+        <ng-template #nonEditable>
+          <span class="non-editable" *ngIf="column.accessor !== 'total'">
+            {{ row[column.accessor] | currency }}
+          </span>
+          <span class="non-editable" *ngIf="column.accessor === 'total'">
+            {{ row.quantity * row.cost || row.rate || 0 | currency }}
+          </span>
+        </ng-template>
+
+        <div
+          class="delete-row"
+          (click)="onDeleteRow($index)"
+          *ngIf="column.label === 'total'"
+        >
+          <app-icon [iconName]="'delete'"></app-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<kendo-combobox
+  [data]="listItems"
+  textField="name"
+  valueField="id"
+  [value]="selection"
+  [filterable]="true"
+  (valueChange)="onUpdateValue($event)"
+  (selectionChange)="onUpdateSelection($event)"
+  (filterChange)="onUpdateFilter($event)"
+  [placeholder]="placeholder"
+  (open)="onOpen()"
+  (close)="onClose()"
+  [ngClass]="{ opened: opened }"
+>
+  <ng-template kendoComboBoxItemTemplate let-dataItem>
+    <span [innerHTML]="allowHtml(dataItem.name)"></span>
+  </ng-template>
+
+  <ng-template kendoComboBoxHeaderTemplate *ngIf="listHeader !== 'false'">
+    <div class="dropdown-header">{{ listHeader }}</div>
+  </ng-template>
+</kendo-combobox>

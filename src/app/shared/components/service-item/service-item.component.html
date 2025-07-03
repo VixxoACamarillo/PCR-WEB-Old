@@ -1,0 +1,28 @@
+<div
+  class="container-asset-details"
+  *ngIf="includeAsset && (asset$ | async) as asset"
+>
+  <div *ngIf="asset.product">
+    <h6>ASSET TYPE</h6>
+    <span>{{ asset.product.type }}</span>
+  </div>
+  <div *ngIf="asset.product">
+    <h6>ASSET MAKE</h6>
+    <span>{{ asset.product.make }}</span>
+  </div>
+  <div *ngIf="asset.product">
+    <h6>ASSET MODEL</h6>
+    <span>{{ asset.product.model }}</span>
+  </div>
+  <div>
+    <h6>ASSET SERIAL NUMBER</h6>
+    <span>{{ asset.serialNumber }}</span>
+  </div>
+  <div *ngIf="asset.tag">
+    <h6>ASSET TAG</h6>
+    <span>{{ asset.tag }}</span>
+  </div>
+  <div class="remove hide" (click)="onRemove()">
+    <span><app-icon [iconName]="'delete'"></app-icon></span>
+  </div>
+</div>

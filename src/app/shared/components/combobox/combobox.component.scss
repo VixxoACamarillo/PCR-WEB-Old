@@ -1,0 +1,75 @@
+@import 'definitions';
+
+.k-combobox {
+  border: 1px solid $color-dropdown-border;
+  flex: 1;
+  text-align: left;
+  width: 500px; // temp: TODO remove this.
+
+  .k-multiselect-wrap {
+    border: none;
+    background-color: $color-input-background;
+  }
+
+  .k-dropdown-wrap {
+    border: none;
+  }
+
+  .k-select {
+    background-color: $color-dropdown-arrow-background;
+    border-width: 0;
+  }
+
+  .k-icon {
+    color: $color-dropdown-arrow;
+    right: 3.2rem;
+  }
+
+  .k-autocomplete {
+    width: 100%;
+    border: none;
+
+    .k-clear-value {
+      display: none !important;
+    }
+  }
+
+  .k-input {
+    @include composite-input;
+    padding: 0px;
+
+    padding-left: 5px;
+  }
+}
+
+.combobox-dropdown {
+  margin-top: 1px;
+
+  .dropdown-header {
+    @include type-small-caps;
+    overflow-y: hidden;
+    color: $color-dropdown-header;
+    padding: 15px 10px 5px;
+
+    &.dropdown-section {
+      border-top: 1px solid $color-container-border;
+      margin-top: 10px;
+    }
+  }
+
+  .k-list-scroller {
+    overflow-y: scroll !important;
+  }
+
+  &.typeahead {
+    .k-item {
+      @include type-bold-text();
+
+      b {
+        // We're using the semantic definition of the b element:
+        // "a span of text stylistically different from normal text"
+        font-weight: normal;
+      }
+    }
+  }
+}

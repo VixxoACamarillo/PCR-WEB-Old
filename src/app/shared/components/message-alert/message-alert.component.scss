@@ -1,0 +1,55 @@
+@import 'definitions';
+
+app-message-alert {
+  .message-alert-container {
+    padding-top: 65px;
+    user-select: none;
+    width: 100%;
+    z-index: 110;
+    position: fixed;
+    top: 0;
+
+    &.modal {
+      padding: 15px 30px;
+      border-bottom: 1px solid $color-modal-divider;
+    }
+
+    .message {
+      align-items: flex-start;
+      background-color: $color-priority-1;
+      border-radius: 3px;
+      color: $color-inverted-text;
+      display: flex;
+      font-size: 0.75rem;
+      min-height: calc(0.75rem + 18px);
+      justify-content: space-between;
+      padding: 12px 10px 10px;
+      margin: 0px 19px;
+
+      .text {
+        span {
+          @include type-bold-text;
+        }
+      }
+
+      .message-action {
+        @include type-small-caps;
+        align-self: center;
+        text-align: right;
+        cursor: pointer;
+        margin: 0;
+        padding-right: 0px;
+        padding-top: 0px;
+        display: inline;
+        white-space: nowrap;
+
+        .icon {
+          height: 8px;
+          width: 8px;
+          margin: 0 0 0 10px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

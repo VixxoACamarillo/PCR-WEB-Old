@@ -1,0 +1,19 @@
+<div class="read-more">
+  <span #readMoreContent class="read-more-content">
+    <ng-content></ng-content>
+  </span>
+  <span *ngIf="truncate" class="toggle">
+    <app-button
+      *ngIf="!expanded"
+      (clicked)="showMore()"
+      type="tertiary"
+      [label]="'Read more'"
+    ></app-button>
+    <app-button
+      *ngIf="expanded"
+      (clicked)="showLess()"
+      type="tertiary"
+      [label]="'Read less'"
+    ></app-button>
+  </span>
+</div>

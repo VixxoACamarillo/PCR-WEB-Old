@@ -1,0 +1,47 @@
+@import 'definitions';
+
+.app-search-bar {
+  padding: 15px 5px 5px 5px;
+  margin: 0px 6px 0px 6px;
+
+  .search-section {
+    display: flex;
+    width: 100%;
+
+    input {
+      @include composite-cc-input;
+    }
+
+    .filter-button {
+      @include type-small-caps;
+      margin-right: 1rem;
+      display: flex;
+      min-width: 80px;
+      height: 2rem;
+      line-height: 2rem;
+      border: 1px solid $color-text-highlight;
+      background: $color-default-background;
+      color: $color-default-text;
+      padding: 0;
+      align-items: center;
+      cursor: pointer;
+
+      app-icon.filter-icon {
+        margin-left: 7px;
+        line-height: 1;
+        .svg-icon-container {
+          .svg-icon {
+            width: 16px;
+            height: 16px;
+            z-index: 1;
+            color: $color-light-text;
+          }
+        }
+      }
+
+      span {
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+}

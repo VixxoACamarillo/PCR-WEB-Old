@@ -1,0 +1,30 @@
+<div class="item-wrapper {{ isLast ? 'last' : '' }}" (click)="onClick($event)">
+  <div class="col service-icon {{ srItem.customPriority }}">
+    <h3>{{ srItem.customPriority }}</h3>
+  </div>
+  <div class="col service-info">
+    <div class="title">
+      <span>{{ srItem.shortDescription }}</span>
+    </div>
+    <div class="description">
+      <div class="sr-number">
+        <span> # {{ srItem.number }} </span>
+      </div>
+      <div class="date">
+        <span *ngIf="srItem.responseSLA">
+          {{ moment(srItem.responseSLA).format('ll') }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col service-schedule">
+    <div class="service-name">
+      <span> {{ srItem.subStatus }} </span>
+    </div>
+    <div class="service-time">
+      <span *ngIf="srItem.completionSLA">
+        {{ moment(srItem.completionSLA).fromNow() }}
+      </span>
+    </div>
+  </div>
+</div>

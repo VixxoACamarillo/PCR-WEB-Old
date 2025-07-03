@@ -1,0 +1,10 @@
+.svg-icon-container {
+  width: inherit;
+  height: inherit;
+
+  svg.svg-icon {
+    width: inherit;
+    height: inherit;
+    fill: currentColor;
+  }
+}

@@ -1,0 +1,562 @@
+@import 'definitions';
+
+.container-globalnav {
+  padding-top: 60px;
+  .content {
+    align-items: center;
+    background-color: $color-inverted-background;
+    display: flex;
+    height: $composite-header-height;
+    padding: 0 19px;
+    position: fixed;
+    top: 0;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    width: 100%;
+    z-index: 120;
+
+    @include composite-responsive-desktop {
+      min-width: $composite-site-min-width;
+    }
+
+    @include composite-responsive-tablet {
+      padding: 0 30px;
+      min-width: auto;
+    }
+  }
+
+  .logo {
+    color: $color-inverted-icons;
+    @media screen and (max-width: 300px) {
+      display: none;
+    }
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      display: block;
+      float: left;
+      list-style: none;
+
+      a {
+        cursor: pointer;
+      }
+
+      &:last-child {
+        margin-right: 0 !important;
+      }
+    }
+  }
+
+  ul.menu-nav {
+    flex-grow: 1;
+    margin-left: 69px;
+
+    @include composite-responsive-tablet {
+      margin-left: 30px;
+    }
+
+    li {
+      @include type-bold-text();
+      font-size: $f5;
+      line-height: 1;
+      margin: 0 1rem;
+
+      &.first-child {
+        margin-left: 60px;
+      }
+
+      a {
+        color: $color-inverted-text;
+        padding: 8px 9px 4px;
+
+        &.active,
+        &:hover {
+          color: $color-inverted-background;
+          background-color: $color-default-background;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+
+      .dropdown-content {
+        display: none !important;
+        position: absolute;
+        background-color: transparent;
+        min-width: 130px;
+        z-index: 1;
+        padding-top: 15px;
+        box-shadow: 0px 16px 4px $color-inverted-background;
+      }
+      .dropdown-content a {
+        color: $color-inverted-background;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: $f6;
+        background-color: $color-default-background;
+        width: 100%;
+      }
+
+      .dropdown-content:after,
+      .dropdown-content:before {
+        bottom: 100%;
+        left: 16%;
+        top: -5px;
+        border: solid transparent;
+        content: '';
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .dropdown-content:after {
+        border-width: 10px;
+        margin-left: -15px;
+      }
+
+      .dropdown-content:before {
+        border-bottom-color: $color-default-background;
+        border-width: 10px;
+        margin-left: -15px;
+      }
+
+      .dropdown-content a:hover {
+        background-color: $color-page-background;
+      }
+
+      &:hover .dropdown-content {
+        display: block !important;
+      }
+      .pm-management {
+        min-width: 130px;
+      }
+      .pm-invoice-bulk-upload {
+        min-width: 180px;
+      }
+    }
+  }
+
+  div.menu-user {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: $composite-header-height;
+    cursor: pointer;
+
+    @include composite-responsive-mobile-tablet {
+      height: $composite-mobile-header-height;
+    }
+
+    .user-button {
+      display: flex;
+      align-items: center;
+      &.responsive {
+        display: none;
+      }
+    }
+
+    .user-greeting {
+      @include type-bold-text;
+      color: $color-inverted-text;
+      margin-left: 20px;
+      align-items: center;
+    }
+
+    .user-dropdown {
+      @include composite-dropdown;
+
+      display: none;
+      position: absolute;
+      top: $composite-header-height;
+      min-width: 170px;
+      right: -30px;
+      width: 360px;
+
+      @include composite-responsive-mobile-tablet {
+        top: $composite-mobile-header-height;
+      }
+
+      .profile {
+        padding: 1rem;
+
+        .name {
+          @include type-bold-text;
+
+          line-height: 1.33;
+        }
+
+        .email,
+        .phone {
+          font-size: $f4;
+          line-height: 1.4;
+          color: $color-light-text;
+        }
+
+        .view-profile {
+          @include type-small-caps;
+          height: 14px;
+          color: $_olive;
+          margin-top: 6px;
+        }
+      }
+
+      .sign-out {
+        border-top: 1px solid $color-container-border;
+        padding: 1rem 1.5rem;
+
+        &.create {
+          display: none;
+        }
+      }
+
+      // Styles for QA build info - these can be removed at launch
+      ul.build-info {
+        border-top: 1px solid $color-container-border;
+        margin: 0;
+        padding: 30px;
+
+        li {
+          float: none;
+          display: flex;
+          align-items: center;
+          padding-top: 10px;
+
+          &:first-child {
+            padding-top: 0;
+          }
+
+          .label {
+            @include type-small-caps;
+
+            flex: 1;
+            padding-top: 1px;
+            margin-bottom: -1px;
+          }
+
+          .label-value {
+            flex: 3;
+          }
+
+          a {
+            flex: 3;
+
+            &:hover,
+            &:active {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      // End Styles for QA build info
+
+      .alpha-feedback {
+        padding: 0 1.5rem 1rem 1.5rem;
+      }
+    }
+
+    &::after {
+      margin-left: 10px;
+      border: solid transparent;
+      content: '';
+      height: 0;
+      width: 0;
+      border-width: 5px;
+      pointer-events: none;
+      border-top-color: $color-inverted-text;
+      margin-top: 5px;
+    }
+
+    &.open {
+      &::after {
+        border: solid transparent;
+        content: '';
+        height: 0;
+        width: 0;
+        border-width: 5px;
+        pointer-events: none;
+        border-top-color: transparent;
+        border-bottom-color: $color-inverted-text;
+        margin-top: -5px;
+      }
+
+      .user-dropdown {
+        display: block;
+      }
+    }
+  }
+
+  .create-new-menu {
+    margin-right: 30px;
+    border-radius: 3px;
+    @include composite-responsive-mobile {
+      position: fixed;
+      right: 40px;
+    }
+    .new-button {
+      a {
+        line-height: 2rem;
+        min-width: 150px;
+        @include composite-responsive-mobile {
+          min-width: 0px;
+        }
+        .menu {
+          @include composite-responsive-mobile {
+            display: none;
+          }
+          @include type-button-text;
+          width: 100%;
+          color: $_white;
+          background-color: $_olive;
+          height: 1.875rem;
+          line-height: 1.875rem;
+          border: 1px solid $color-button-border;
+          border-bottom-right-radius: 3px;
+          border-top-right-radius: 3px;
+          border-left: none;
+          text-align: center;
+        }
+        .menu-opened {
+          color: $color-button-border;
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+        .icon {
+          position: relative;
+          .vertical {
+            background: $_white;
+            margin: 7px 19px;
+            width: 2px;
+            height: 16px;
+          }
+          .horizontal {
+            background: $_white;
+            margin: 14px 12px;
+            width: 16px;
+            height: 2px;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+          }
+          background-color: $color-button-border;
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          @include composite-responsive-mobile {
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+          }
+        }
+        color: $color-inverted-background;
+        display: flex;
+        align-items: stretch;
+
+        &:hover {
+          border-radius: 3px;
+          cursor: pointer;
+        }
+      }
+    }
+    .options-drop-down {
+      position: absolute;
+      .options-container {
+        display: flex;
+        width: 150px;
+        flex-direction: column;
+        background-color: $color-button-border;
+        border-radius: 3px;
+        .menu-item {
+          border-bottom: 1px solid #6e8036;
+          a {
+            border: 1px solid $color-button-border;
+            height: calc(20px + 1rem);
+            min-width: 140px;
+            &:hover {
+              border-radius: 3px;
+              color: #fff;
+              cursor: pointer;
+            }
+          }
+          @include type-button-text;
+          padding: 10px 10px 6px 18px;
+          color: #fff;
+          height: 100%;
+          border-radius: inherit;
+        }
+        .menu-item:hover {
+          background-color: $color-vixxo-secondary;
+          a {
+            border: 0px;
+            color: $color-dark-text;
+          }
+        }
+      }
+      .arrow-up {
+        margin-top: 6px;
+        margin-bottom: -7px;
+        height: 0;
+        width: 0;
+        border-left: 13px solid transparent;
+        border-right: 13px solid transparent;
+        border-bottom: 13px solid $color-button-border;
+        margin-left: 7px;
+      }
+    }
+  }
+
+  &.client-connector-nav {
+    .content {
+      @include composite-responsive-mobile-tablet {
+        height: $composite-mobile-header-height;
+        padding: 0 11px;
+      }
+
+      .menu-nav {
+        margin: 0;
+
+        a {
+          display: none;
+        }
+
+        div {
+          cursor: pointer;
+          height: 35px;
+          width: 52px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+
+          app-icon {
+            height: 16px;
+            width: 120px;
+
+            &.icon-hamburger {
+              width: 20px;
+            }
+
+            &.close-icon {
+              height: 20px;
+              width: 20px;
+              color: #8d9c9c;
+            }
+          }
+        }
+
+        .access-denied {
+          cursor: default;
+
+          &::after {
+            border: none;
+          }
+        }
+
+        @media screen and (min-width: 1025px) {
+          display: flex;
+
+          a {
+            display: block;
+          }
+          div {
+            display: none;
+          }
+        }
+      }
+
+      .responsive-nav-menu-container {
+        position: fixed;
+        left: 0;
+        top: $composite-mobile-header-height;
+        right: 0;
+        bottom: 0;
+        background: rgba(32, 53, 53, 0.6);
+        z-index: 1;
+
+        @media screen and (min-width: 1025px) {
+          display: none;
+        }
+
+        .drop-down-responsive-nav-menu {
+          width: 375px;
+          background: $color-inverted-background;
+          position: absolute;
+          padding: 30px;
+
+          @include composite-responsive-mobile {
+            width: 100%;
+          }
+
+          ul {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+
+            li {
+              cursor: pointer;
+              font-size: $f3;
+              text-transform: capitalize;
+              @include type-bold-text;
+              @include composite-responsive-xs-mobile {
+                font-size: $f4;
+              }
+
+              &:not(:last-child) {
+                margin-bottom: 30px;
+              }
+
+              a {
+                color: $color-default-background;
+              }
+            }
+          }
+        }
+      }
+
+      .menu-user {
+        .user-button {
+          display: none;
+          align-items: center;
+
+          &.responsive {
+            height: 25px;
+            width: 25px;
+            display: block;
+
+            app-icon {
+              height: 25px;
+              width: 25px;
+              color: $color-default-background;
+            }
+          }
+
+          @media screen and (min-width: 1025px) {
+            display: flex;
+
+            &.responsive {
+              display: none;
+            }
+          }
+        }
+
+        @include composite-responsive-mobile {
+          .sign-out.create {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .image {
+    filter: invert(5) sepia(1) saturate(5) hue-rotate(175deg);
+    color: white;
+    width: 150px;
+  }
+}

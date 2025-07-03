@@ -1,0 +1,111 @@
+<kendo-grid
+  [data]="tableData"
+  [class]="tableClass"
+  [ngClass]="{ 'no-header': !headerActive, 'hide-scroll': hideScrollBar }"
+  (cellClick)="cellClicked($event)"
+  [sortable]="{ allowUnsort: true, mode: 'single' }"
+  [sort]="sort"
+  (sortChange)="sortChange($event)"
+  [selectable]="selectableSettings"
+  [navigable]="true"
+  [height]="500"
+
+>
+<kendo-grid-checkbox-column
+[resizable]="true"
+[columnMenu]="true"
+showSelectAll="true"></kendo-grid-checkbox-column>
+  <kendo-grid-column
+    *ngFor="let column of gridConfig"
+    [field]="column.property"
+    [title]="column.label || ''"
+    [style]="{ width: column.width }"
+    [sortable]="column.sortable"
+    [headerStyle]="{ width: column.width }"
+  >
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div [ngClass]="column.type || ''">
+        <!-- SLA property -->
+        <div
+          *ngIf="column.type === 'sla'; then slaField; else simpleField"
+        ></div>
+        <ng-template #slaField>
+          <span *ngIf="column.type === 'sla'" class="sla-icon">SLA</span>
+          <span>{{
+            dateTimeService.getDateTime(dataItem[column.property])
+          }}</span>
+        </ng-template>
+        <!-- Simple Property -->
+        <ng-template #simpleField>
+          <div
+            *ngIf="
+              column.type === 'date';
+              then dateTemplate;
+              else simpleFieldTemplate
+            "
+          ></div>
+          <ng-template #dateTemplate>
+            <span>{{
+              dateTimeService.getDate(dataItem[column.property])
+            }}</span>
+            <span
+              *ngIf="
+                !fullSize &&
+                column.sortable &&
+                tableData.indexOf(dataItem) === 0 &&
+                dir === 'desc'
+              "
+              class="k-icon k-i-kpi-trend-increase"
+              (click)="sortClicked(column)"
+            ></span>
+            <span
+              *ngIf="
+                !fullSize &&
+                column.sortable &&
+                tableData.indexOf(dataItem) === 0 &&
+                dir === 'asc'
+              "
+              class="k-icon k-i-kpi-trend-decrease"
+              (click)="sortClicked(column)"
+            ></span>
+          </ng-template>
+          <ng-template #simpleFieldTemplate>
+            <div
+              *ngIf="
+                column.type === 'priority-indicator';
+                then priorityField;
+                else other_content
+              "
+            ></div>
+            <ng-template #priorityField>
+              <div
+                *ngIf="dataItem['type'] === 'Preventative Maintenance'"
+                class="priority-indicator purple-pill"
+              ></div>
+              <div class="priority-indicator">
+                <div
+                  *ngIf="dataItem['type'] === 'Repair'"
+                  class="priority-dot {{ getPriorityColorClass(dataItem) }}"
+                ></div>
+                <div *ngIf="dataItem['type'] === 'Repair'">
+                  {{ dataItem[column.property] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template #other_content>
+              <span (click)="goToSr(column, dataItem)">
+                {{ dataItem[column.property] }}
+              </span>
+            </ng-template>
+          </ng-template>
+        </ng-template>
+        <app-icon
+          *ngIf="column.type === 'link'"
+          class="link"
+          iconName="link-out"
+        ></app-icon>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
+<div *ngIf="dataLoading"><vixxo-loader></vixxo-loader></div>

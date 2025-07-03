@@ -1,0 +1,30 @@
+<div class="kc-panel-content">
+  <div class="head">
+    <app-icon class="{{iconClass}}" iconName="{{iconName}}"></app-icon>
+    <div class="header-text">
+      <div class="header">
+        <span class="location-title">{{title}}</span>
+        <span *ngIf="srLength" class="srs-length">({{ srLength }})</span>
+      </div>
+      <div *ngIf="srsFooter" class="sub-header">
+        <small>Verify this is a new issue and not a duplicate.</small>
+      </div>
+    </div>
+  </div>
+  <div><ng-content></ng-content></div>
+  <div *ngIf="srsFooter" class="kc-panel-footer">
+    <a
+      [ngClass]="{'all-shown': srLength <= maxRows}"
+      href="#"
+      class="link"
+      (click)="openNewWindow($event)"
+    >
+      <span>{{ footerText }}</span>
+      <app-icon
+        class="link"
+        iconName="link-out"
+        *ngIf="srLength > maxRows"
+      ></app-icon>
+    </a>
+  </div>
+</div>

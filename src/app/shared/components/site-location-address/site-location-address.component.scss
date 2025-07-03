@@ -1,0 +1,86 @@
+@import 'definitions';
+
+.site-location-address-component {
+  line-height: 1.333;
+  margin: 16px 0px;
+
+  h6 {
+    @include type-small-caps;
+    color: $color-heading-smallest;
+    margin: 0 0 10px 0;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex: 0 0 700px;
+
+    .primary-info {
+      flex: 0 0 314px;
+      margin-right: 21px;
+
+      .store-info {
+        margin-bottom: 24px;
+
+        .address {
+          margin-top: 10px;
+          line-height: 1.5rem;
+        }
+        .google-static-map-link {
+          margin-top: 8px;
+          font-size: $f6;
+          a {
+            @include composite-link;
+            color: $color-grayed;
+            display: flex;
+            span {
+              text-shadow: none;
+            }
+          }
+        }
+      }
+    }
+
+    .secondary-info {
+      display: flex;
+      .site-brand,
+      .site-area,
+      .site-sub-area {
+        margin: 50px 0 0 0;
+      }
+
+      .store-info {
+        .name {
+          a {
+            @include composite-link;
+          }
+        }
+
+        .phone {
+          margin-top: 1em;
+        }
+
+        .hours {
+          line-height: 1.5rem;
+          color: $color-light-text;
+
+          .today {
+            @include type-bold-text;
+
+            &.open-now {
+              color: $color-default-text;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include composite-responsive-mobile {
+    .content-wrapper {
+      flex-direction: column;
+      .primary-info {
+        flex: 1;
+      }
+    }
+  }
+}

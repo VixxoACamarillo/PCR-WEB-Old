@@ -1,0 +1,95 @@
+<section class="service-request-attachments" *ngIf="srData">
+  <div *ngIf="attachmentAlertContent" class="alert-pane">
+    <app-alert
+      [header]="attachmentAlertContent.header"
+      [isInteractive]="true"
+      ctaType="clear"
+      [message]="attachmentAlertContent.message"
+      (action)="onAlertDismissAction($event)"
+    >
+    </app-alert>
+  </div>
+
+  <div
+    #scrollingPane
+    class="scrolling-pane"
+    (scroll)="handleScroll($event)"
+    [ngClass]="{ scrolled: isScrolled }"
+  >
+    <div class="date-chunk">
+      <div class="header"></div>
+      <div *ngFor="let attachment of sortedAttachmentsData">
+        <div class="attachment-item">
+          <div class="content content-service-request">
+            <a class="download" href="{{ attachment?.url }}" target="_blank">
+              <div
+                *ngIf="
+                  isImageFileExtension(
+                    parseFileExtensionFromKey(attachment?.key)
+                  );
+                  then thumbnail;
+                  else fileIcon
+                "
+              ></div>
+              <ng-template #thumbnail>
+                <div class="thumbnail-placeholder">
+                  <img [src]="attachment?.url" class="thumbnail" />
+                </div>
+              </ng-template>
+
+              <ng-template #fileIcon>
+                <div
+                  *ngIf="
+                    attachment?.subType === 'preloaded';
+                    then imageLoading;
+                    else icon
+                  "
+                ></div>
+                <ng-template #imageLoading>
+                  <div class="thumbnail-placeholder">
+                    <app-image-loading></app-image-loading>
+                  </div>
+                </ng-template>
+
+                <ng-template #icon>
+                  <div class="file-icon file-icon-service-attachment">
+                    <app-icon class="file" iconName="file"></app-icon>
+                    <div class="extension">
+                      {{ parseFileExtensionFromKey(attachment?.key) }}
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-template>
+
+              <div class="metadata">
+                <div class="filename">
+                  {{ parseFileNameFromKey(attachment?.key) }}
+                </div>
+                <div
+                  class="timestamp"
+                  *ngIf="attachment?.subType !== 'preloaded'"
+                >
+                  {{
+                    getFormattedDateTime(
+                      attachment?.createdDate,
+                      srData.site?.timezone
+                    )
+                  }}
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="{ upload: true }">
+    <app-upload-attachment
+      (onFileRead)="onFileRead($event)"
+      [uploadingAttachment]="uploadingAttachment"
+      [tabIndex]="tabIndex * 1 + index + 2"
+      padding="0px"
+    >
+    </app-upload-attachment>
+  </div>
+</section>

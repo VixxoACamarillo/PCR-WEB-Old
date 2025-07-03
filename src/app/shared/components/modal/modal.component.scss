@@ -1,0 +1,162 @@
+@import 'definitions';
+
+.k-dialog {
+  display: block;
+
+  @include composite-responsive-mobile {
+    width: 90%;
+  }
+
+  .k-dialog-titlebar {
+    background-color: $color-modal-header;
+    padding: 20px 30px 11px;
+    display: flex;
+
+    .k-dialog-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:before {
+        content: none;
+      }
+
+      h2 {
+        @include type-heading('3');
+        color: $color-default-text;
+        padding: 10px 0;
+      }
+
+      .required-message {
+        font-size: $f6;
+        color: $color-light-text;
+        margin-top: -5px;
+        margin-right: 21px;
+      }
+      .required-message::before {
+        content: '*';
+        color: $_red;
+        font-weight: bold;
+      }
+    }
+    
+    .k-icon.k-i-x {
+      color: $color-modal-header-icon;
+      font-size: $f3;
+    }
+  }
+
+  .k-dialog-content {
+    display: flex;
+    flex-direction: column;
+    color: $_coal;
+    font-size: $f5;
+    padding: 0;
+
+    .modal-body-content {
+      padding: 30px;
+      flex-grow: 1;
+      max-height: $composite-modal-max-height;
+      overflow: auto;
+
+      .modal-subtitle {
+        font-size: $f4;
+        margin-top: 10px;
+      }
+
+      &.custom-footer {
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+
+        .custom-footer-button {
+          position: absolute;
+          right: 30px;
+          bottom: 30px;
+        }
+      }
+    }
+  }
+
+  .k-dialog-buttongroup {
+    margin-bottom: 4px;
+    padding: 30px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $color-modal-divider;
+
+    app-button {
+      width: auto;
+    }
+
+    .k-button {
+      flex: 0 0 auto;
+
+      &.secondary {
+        margin-left: 15px;
+        @include composite-button-secondary;
+        color: $color-vixxo-primary !important;
+      }
+    }
+  }
+
+  .k-dialog-buttongroup .k-button.k-primary {
+    @include composite-button-primary;
+
+    &:not(:hover):not(.k-state-hover):not(:active):not(.k-state-eactive) {
+      color: $color-button-primary-text;
+      background: $color-button-primary-background;
+    }
+  }
+
+  .k-dialog-buttongroup .k-button.k-primary[disabled],
+  .k-dialog-buttongroup
+    .k-button.k-primary.k-state-disabled:not(:hover):not(.k-state-hover):not(:active):not(.k-state-eactive) {
+    border-color: $_nickel;
+    color: $_gray29;
+    background-color: $_adamantium;
+  }
+
+  .floating-btn-container {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    text-align: right;
+
+    .floating-btn {
+      height: 36px;
+      width: 36px;
+      color: $color-light-text;
+    }
+  }
+
+  .header-index {
+    color: $_nickel;
+    position: absolute;
+    margin-top: 7px;
+    left: 0px;
+    margin-left: 2.5rem;
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  @media (max-width: 767px) {
+    .header-index {
+      margin-left: 1.5rem;
+    }
+  }
+
+  @media (max-width: 424px) and (min-width: 321px) {
+    .header-index {
+      top: 160px;
+      left: 11px;
+    }
+  }
+
+  .k-actions-stretched > * {
+  flex: none !important;
+  }
+}

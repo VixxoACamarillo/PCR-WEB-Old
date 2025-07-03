@@ -1,0 +1,74 @@
+@import 'definitions';
+
+.priority-dot {
+  border-radius: 50%;
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.highlight {
+  border: 1px solid $_red !important;
+}
+
+.k-dropdown {
+  height: 36px;
+  flex: 1;
+  text-align: left;
+  font-size: $f5;
+  .k-dropdown-wrap {
+    color: $_stone;
+    border: 1px solid $_stone;
+    &:hover {
+      border: 1px solid $_hoverBlue;
+      color: $_stone;
+    }
+    &.k-state-focused {
+      color: $_coal;
+      background-image: none;
+      background-color: $_quartz;
+    }
+    .k-input {
+      background-color: $_quartz;
+      border-radius: 4px 0 0 4px;
+      height: 100%;
+    }
+    .k-select {
+      background-color: $_quartz;
+      border-width: 0;
+      border-radius: 0 4px 4px 0;
+      .k-icon {
+        color: $color-dropdown-arrow;
+        &.arrow-open::before {
+          content: '\e004';
+        }
+      }
+    }
+  }
+}
+
+.vixxo-dropdown.k-popup.k-list-container {
+  @include composite-dropdown;
+  @include composite-kendo-dropdown;
+  margin-top: 1px;
+  text-align: left;
+  background-color: $color-dropdown-simple-background;
+  .k-item {
+    &:hover {
+      background-color: $_honeydew;
+      color: #6e8036;
+    }
+
+    &.k-state-selected {
+      background-color: $_honeydew;
+      color: $_moss;
+
+      &:hover {
+        background-color: $_honeydew;
+        color: $_moss;
+      }
+    }
+  }
+}

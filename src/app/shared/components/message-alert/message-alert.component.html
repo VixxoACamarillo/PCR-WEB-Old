@@ -1,0 +1,14 @@
+<div class="message-alert-container">
+  <div class="message" *ngIf="loadMessage">
+    <div class="text">
+      <span>{{ header }}:</span> {{ message }}
+    </div>
+
+    <div class="message-action">
+      <a (click)="clearMessage()">
+        Close
+        <app-icon class="icon" iconName="close"></app-icon>
+      </a>
+    </div>
+  </div>
+</div>

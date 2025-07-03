@@ -1,0 +1,208 @@
+@import 'definitions';
+
+.k-datepicker,
+.k-timepicker {
+  width: 175px !important;
+
+  .k-picker-wrap {
+    border-color: $color-dropdown-border;
+    width: 175px;
+  }
+
+  .k-select {
+    width: 35px;
+    border: none !important;
+    background-color: $color-dropdown-arrow-background !important;
+  }
+
+  .k-input {
+    padding-bottom: 0 !important;
+  }
+}
+
+.k-datetimepicker {
+  width: 325px !important;
+}
+
+.k-datepicker,
+.k-datetimepicker {
+  .k-i-calendar {
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-image: url('https://vixxolink-cdn.s3.amazonaws.com/assets/svgs/input-date.svg');
+
+    &::before {
+      content: none !important;
+    }
+  }
+}
+
+.k-timepicker,
+.k-datetimepicker {
+  .k-i-clock {
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-image: url('https://vixxolink-cdn.s3.amazonaws.com/assets/svgs/input-time.svg');
+
+    &::before {
+      content: none !important;
+    }
+  }
+}
+
+.k-datetime-container {
+  .k-button:active {
+    background-color: $color-timezone-background;
+  }
+  .k-button {
+    color: $color-tabs-text;
+    background-color: $color-tabs-background;
+    border-color: $color-tabs-background;
+  }
+  .k-button.k-state-active {
+    border-color: $color-tabs-background;
+    color: $color-tabs-text;
+    background-color: $color-tabs-background-active;
+    background-image: none;
+  }
+  .k-datetime-selector {
+    height: 230px;
+    .k-datetime-calendar-wrap,
+    .k-datetime-time-wrap {
+      height: 230px;
+      .k-widget.k-calendar {
+        height: 230px;
+      }
+      .k-time-list-wrapper {
+        height: 150px;
+      }
+    }
+  }
+}
+
+.k-calendar {
+  .k-calendar-navigation {
+    background-color: transparent;
+    box-shadow: none;
+
+    &::before,
+    &::after {
+      box-shadow: 0 0 6em 3em #fff;
+    }
+  }
+
+  .k-title {
+    @include type-small-caps;
+    font-size: $f5;
+  }
+
+  span.k-today,
+  .k-calendar-weekdays th {
+    @include type-small-caps();
+  }
+
+  .k-content {
+    .k-link {
+      @include type-small-caps();
+      line-height: 2.8em;
+      padding: 0;
+
+      &:hover {
+        color: $color-date-selection;
+      }
+    }
+
+    td.k-today {
+      color: $color-date-selection;
+    }
+
+    td.k-state-focused {
+      background-color: transparent;
+
+      .k-link {
+        background-color: $color-date-selection;
+        color: white;
+      }
+    }
+  }
+
+  .k-calendar-navigation {
+    li {
+      @include type-small-caps();
+      padding-top: 0;
+      line-height: inherit;
+      height: calc(1rem + 20px);
+      display: flex;
+      align-items: center;
+
+      span {
+        padding-top: 0.3em;
+      }
+    }
+  }
+}
+
+.k-timeselector {
+  .k-title,
+  .k-time-now {
+    @include type-small-caps();
+  }
+
+  .k-time-header .k-title {
+    font-size: $f5;
+  }
+
+  .k-time-list .k-item {
+    @include type-small-caps();
+    padding-top: 0;
+    line-height: inherit;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .k-time-cancel {
+    display: none;
+  }
+
+  .k-button.k-primary {
+    @include composite-button-primary;
+  }
+}
+
+.timepicker,
+.datepicker,
+.datetimepicker {
+  position: relative;
+
+  .timezone {
+    position: absolute;
+    right: 51px;
+    top: 50%;
+    margin-top: -6px;
+    @include type-small-caps;
+    display: inline-block;
+    color: $color-timezone-text;
+    background-color: $color-timezone-background;
+    border-radius: 3px;
+    height: 14px;
+    padding: 3px 5px 0;
+  }
+
+  .k-input::placeholder {
+    color: $_nickel;
+  }
+}
+
+.date-time-inputs {
+  display: flex;
+  margin: 0 0 30px;
+
+  .datepicker {
+    padding-right: 30px;
+  }
+}

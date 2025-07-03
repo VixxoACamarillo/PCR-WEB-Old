@@ -1,0 +1,129 @@
+<div class="calendar-selection">
+  <div class="month-selection">
+    <div class="date {{ view }}">
+      <h3>{{ viewDate | calendarDate: view + 'ViewTitle':'en' }}</h3>
+    </div>
+    <div class="buttons">
+      <div
+        class="prev btn controls"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        *ngIf="canGoBackwards"
+        (viewDateChange)="viewDateChange($event, 'prevMonth')"
+      ></div>
+      <button
+        class="btn today"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange($event, 'today')"
+      >
+        Today
+      </button>
+      <div
+        class="next btn controls"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange($event, 'nextMonth')"
+      ></div>
+    </div>
+  </div>
+  <div class="calendar-type" *ngIf="!smallCalendar">
+    <div
+      class="btn btn-primary"
+      (click)="view = 'day'"
+      [class.active]="view === 'day'"
+    >
+      Today
+    </div>
+    <div
+      class="btn btn-primary"
+      (click)="view = 'month'"
+      [class.active]="view === 'month'"
+    >
+      Month
+    </div>
+    <div
+      class="btn btn-primary"
+      (click)="view = 'week'"
+      [class.active]="view === 'week'"
+    >
+      Week
+    </div>
+  </div>
+</div>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div
+    class="cal-cell-top"
+    [class.user-selected]="isSameDay(viewDate, daySelectedByUser)"
+  >
+    <span class="cal-day-number">{{
+      day.date | calendarDate: 'monthViewDayNumber':locale
+    }}</span>
+    <div class="cal-events" *ngIf="day.events.length > 0">
+      <div
+        [style.backgroundColor]="
+          smallCalendar ? '#2c7b80' : day.events[0].color.primary
+        "
+        (click)="eventClicked(day.events[0])"
+        [class.small-cal-event]="smallCalendar"
+        [class.cal-event]="!smallCalendar"
+        [ngClass]="day.events[0]?.cssClass"
+      >
+        {{ smallCalendar ? '' : day.events[0].priority }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #headerTemplate let-days="days" let-locale="locale">
+  <div class="cal-cell-row cal-header">
+    <div
+      class="cal-cell"
+      *ngFor="let day of days"
+      [class.cal-past]="day.isPast"
+      [class.cal-future]="day.isFuture"
+      [class.caltoday]="day.isToday"
+    >
+      {{ dayOfTheWeek(day.date | calendarDate: 'weekViewColumnHeader':locale) }}
+    </div>
+  </div>
+</ng-template>
+
+<div
+  class="calendar-view"
+  [ngClass]="{ 'small-calendar': smallCalendar }"
+  [ngSwitch]="view"
+>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-day-view>
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+    [headerTemplate]="headerTemplate"
+    [cellTemplate]="customCellTemplate"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-week-view>
+</div>

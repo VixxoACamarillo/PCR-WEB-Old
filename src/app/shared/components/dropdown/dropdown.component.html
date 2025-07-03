@@ -1,0 +1,40 @@
+<kendo-dropdownlist
+  #dropdownlist
+  [data]="data"
+  [popupSettings]="{
+    popupClass: 'simple-dropdown'
+  }"
+  [(ngModel)]="selected"
+  (valueChange)="valueChange($event)"
+  (blur)="closeDropdown()"
+  [textField]="textField"
+  [valueField]="valueField"
+  [disabled]="disabled"
+  (open)="onOpen()"
+  (close)="onClose()"
+  tabindex="1"
+  [class.highlight]="isValid"
+  required
+>
+  <ng-template
+    *ngIf="templateType === 'priority'"
+    kendoDropDownListItemTemplate
+    let-dataItem
+  >
+    <span
+      class="priority-dot priority-color-{{ dataItem?.priorityOrder }}"
+    ></span>
+    {{ dataItem?.name }}
+  </ng-template>
+
+  <ng-template
+    *ngIf="templateType === 'priority'"
+    kendoDropDownListValueTemplate
+    let-dataItem
+  >
+    <span
+      class="priority-dot priority-color-{{ dataItem?.priorityOrder }}"
+    ></span>
+    {{ dataItem?.name }}
+  </ng-template>
+</kendo-dropdownlist>

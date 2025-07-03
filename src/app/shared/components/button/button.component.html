@@ -1,0 +1,12 @@
+<button
+  kendoButton
+  (click)="handleClick($event)"
+  [primary]="isPrimary"
+  [class]="className"
+  [ngClass]="{ 'full-width': fullWidth, 'k-primary':isPrimary  }"
+  [disabled]="disabled"
+  [type]="buttonType"
+>
+  <app-icon *ngIf="icon !== ''" [iconName]="icon"></app-icon>
+  {{ label }}
+</button>

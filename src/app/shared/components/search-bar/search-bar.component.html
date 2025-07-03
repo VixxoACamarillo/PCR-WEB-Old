@@ -1,0 +1,14 @@
+<div class="app-search-bar">
+  <div class="search-section">
+    <div class="filter-button" (click)="onToggle()" *ngIf="displayFilter">
+      <app-icon class="filter-icon" iconName="Unfiltered"></app-icon>
+      <span>FILTER</span>
+    </div>
+    <input
+      type="text"
+      placeholder="Search"
+      [ngModel]="value"
+      (ngModelChange)="onSearch($event)"
+    />
+  </div>
+</div>

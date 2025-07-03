@@ -1,0 +1,25 @@
+<section
+  class="service-request-resolution-notes"
+  *ngIf="resolutionNotesVisible"
+>
+  <div *ngIf="serviceRequestResolutionNotes.length == 0" class="notes">
+    <div>
+      <span class="resolution-notes-required">RESOLUTION NOTES</span>
+      <span class="required-field"> * </span>
+      <app-textarea
+        [requirementLabel]="requirementLabelValue"
+        placeholder="Enter resolution notes"
+        [value]="addText"
+        (change)="setResolutionNotes($event)"
+      >
+      </app-textarea>
+    </div>
+  </div>
+  <div *ngIf="serviceRequestResolutionNotes.length > 0" class="notes">
+    <div>
+      <span class="resolution-notes-required">RESOLUTION NOTES</span>
+      <div class="resolutionDate">{{ resolutionNoteDate }}</div>
+      <div class="resolutionNote">{{ resolutionNoteText }}</div>
+    </div>
+  </div>
+</section>

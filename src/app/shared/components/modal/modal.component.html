@@ -1,0 +1,58 @@
+<kendo-dialog (close)="close(data, 'cancel')" [width]="width" [height]="height">
+  <ng-container *ngIf="displayCloseButton">
+    <kendo-dialog-titlebar *ngIf="!floatingClose">
+      <h2>{{ title }}</h2>
+      <div *ngIf="requiredMessage" class="required-message">
+        Denotes Required Fields
+      </div>
+    </kendo-dialog-titlebar>
+
+    <!-- Floating close button-->
+    <div
+      class="floating-btn-container"
+      *ngIf="floatingClose"
+      (click)="close(data, 'cancel')"
+    >
+      <app-icon class="floating-btn" [iconName]="'close'"></app-icon>
+    </div>
+    <!-- Alerts -->
+    <app-alert *ngIf="error" [header]="error.header" [message]="error.message">
+    </app-alert>
+  </ng-container>
+  <div class="modal-body-content" [ngClass]="{ 'custom-footer': customFooter }">
+    <ng-content></ng-content>
+    <app-button
+      *ngIf="customFooter"
+      type="primary"
+      class="custom-footer-button"
+      [label]="primaryButton"
+      [disabled]="!allowToSubmit"
+      (clicked)="close(data, 'change')"
+    >
+    </app-button>
+  </div>
+
+  <kendo-dialog-actions
+    class="modal-footer"
+    *ngIf="!customFooter && !disableFooter"
+  >
+    <div *ngIf="totalValue > 1" class="header-index">
+      {{ index }} of {{ totalValue }}
+    </div>
+
+    <app-button
+      #btnYesModal
+      type="primary"
+      [label]="primaryButton"
+      [disabled]="!allowToSubmit"
+      (clicked)="close(data, modalStatus.CHANGE)"
+    ></app-button>
+    <app-button
+      *ngIf="secondaryButton"
+      type="secondary"
+      [label]="secondaryButton"
+      (clicked)="close(data, secondaryButtonModalStatus)"
+      (keydown.tab)="tabKeyDown($event)"
+    ></app-button>
+  </kendo-dialog-actions>
+</kendo-dialog>

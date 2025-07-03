@@ -1,0 +1,28 @@
+<section class="site-location-address-component" *ngIf="data">
+  <div class="content-wrapper">
+    <!-- Left Column Information -->
+    <div class="primary-info">
+      <div class="store-info">
+        <h6 class="store-info-address-title">Address</h6>
+
+        <div class="address" *ngIf="showAddress">
+          <span *ngIf="data.site?.addressLineOne"
+            >{{ data.site.addressLineOne }}<br
+          /></span>
+          <span *ngIf="data.site?.addressLineTwo"
+            >{{ data.site.addressLineTwo }}<br
+          /></span>
+          <span *ngIf="data.site?.city">{{ data.site.city }}, </span>
+          <span *ngIf="data.site?.state">{{ data.site.state }} </span>
+          <span *ngIf="data.site?.zipcode">{{ data.site.zipcode }}<br /></span>
+          <span *ngIf="data.site?.country && data.site.country !== 'USA'">{{
+            data.site.country
+          }}</span>
+          <div *ngIf="data.site?.phoneNumber" class="phone">
+            {{ data.site.phoneNumber | phoneNumberFormatter }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

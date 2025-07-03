@@ -1,0 +1,10 @@
+<div *ngIf="hasCustomAvatar; else defaultAvatar" class="custom-avatar">
+  <img src="{{ profile.picture }}" />
+</div>
+
+<ng-template #defaultAvatar>
+  <app-icon *ngIf="nav" class="no-avatar" iconName="user"></app-icon>
+  <div *ngIf="!nav" class="default-avatar" [ngClass]="avatarClass">
+    <span class="initials">{{ avatarInitials }}</span>
+  </div>
+</ng-template>

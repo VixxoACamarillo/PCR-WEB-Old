@@ -1,0 +1,17 @@
+<div class="notification-container">
+  <div class="row middle-xs">
+    <div class="col-xs-9">
+      <app-icon class="warning" iconName="warning"></app-icon>
+      <span class="text">{{ messageText }}</span>
+    </div>
+    <div class="col-xs-3">
+      <app-button
+        (clicked)="onSubmitClick()"
+        type="primary"
+        label="Release"
+        [class]="'accept'"
+        [fullWidth]="true"
+      ></app-button>
+    </div>
+  </div>
+</div>

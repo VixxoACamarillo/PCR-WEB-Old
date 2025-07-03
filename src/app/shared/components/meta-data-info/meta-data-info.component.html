@@ -1,0 +1,23 @@
+<div class="info-metadata">
+  <div class="substatus">
+    <span *ngIf="status; else noStatus">{{ status }}</span>
+    <ng-template #noStatus> <span>Error - Status</span> </ng-template>
+  </div>
+  <div class="info">
+    <div class="info-id">
+      <span *ngIf="id; else noNumber"
+        >{{ title }}# <span class="number-value">{{ id }}</span></span
+      >
+      <ng-template #noNumber>
+        <span>Error - {{ title }} number</span>
+      </ng-template>
+    </div>
+
+    <div class="info-date">
+      <span *ngIf="createdDate">
+        {{ createdDate | siteDate: timezone }} -
+        {{ createdDate | siteTime: timezone }} {{ timezone }}</span
+      >
+    </div>
+  </div>
+</div>

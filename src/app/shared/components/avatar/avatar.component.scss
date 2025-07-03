@@ -1,0 +1,71 @@
+@import 'definitions';
+
+.custom-avatar,
+.default-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  &.small {
+    width: 30px;
+    height: 30px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.custom-avatar {
+  overflow: hidden;
+}
+
+// user icon
+.no-avatar {
+  height: 24px;
+  width: 24px;
+  color: $color-inverted-icons;
+}
+
+.default-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .initials {
+    @include type-small-caps;
+    font-size: $f5;
+  }
+
+  &.small {
+    .initials {
+      font-size: $f7;
+    }
+  }
+}
+
+.default-avatar-1 {
+  background-color: $color-avatar-default-background-1;
+  color: $color-avatar-default-text-1;
+}
+
+.default-avatar-2 {
+  background-color: $color-avatar-default-background-2;
+  color: $color-avatar-default-text-2;
+}
+
+.default-avatar-3 {
+  background-color: $color-avatar-default-background-3;
+  color: $color-avatar-default-text-3;
+}
+
+.default-avatar-4 {
+  background-color: $color-avatar-default-background-4;
+  color: $color-avatar-default-text-4;
+}

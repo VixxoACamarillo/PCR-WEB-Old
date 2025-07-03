@@ -1,0 +1,45 @@
+<section class="site-side-bar-location-address" *ngIf="data">
+  <div class="content-wrapper">
+    <h2>Location</h2>
+    <div class="primary-info">
+      <div class="store-info" style="padding-right: 50px">
+        <app-google-map
+          [latitude]="data.site.latitude"
+          [longitude]="data.site.longitude"
+          [zoom]="13"
+        >
+        </app-google-map>
+        <div class="google-static-map-link">
+          <a href="#" (click)="viewInGoogleMaps($event)">
+            <span>Open in Google Maps</span
+            ><!--
+                  Comment trick to insert a non-breaking space to prevent
+                  the link icon from being orphaned from the text.
+                -->&nbsp;<app-icon class="link" iconName="link-out"></app-icon>
+          </a>
+        </div>
+
+        <h6 class="store-info-address-title">Address</h6>
+
+        <div class="address" *ngIf="showAddress">
+          <span *ngIf="data.site?.addressLineOne"
+            ><b>{{ data.site.addressLineOne }}<br /></b
+          ></span>
+          <span *ngIf="data.site?.addressLineTwo"
+            >{{ data.site.addressLineTwo }}<br
+          /></span>
+          <span *ngIf="data.site?.city">{{ data.site.city }}, </span>
+          <span *ngIf="data.site?.state">{{ data.site.state }} </span>
+          <span *ngIf="data.site?.zipcode">{{ data.site.zipcode }}<br /></span>
+          <span *ngIf="data.site?.country && data.site.country !== 'USA'"
+            >{{ data.site.country }}</span
+          >
+          <div *ngIf="data.site?.phoneNumber" class="phone">
+            {{ data.site.phoneNumber | phoneNumberFormatter }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right Column Information -->
+  </div>
+</section>

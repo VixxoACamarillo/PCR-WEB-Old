@@ -1,0 +1,29 @@
+@import 'definitions';
+
+.service-request-resolution-notes {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .resolution-notes-required {
+    color: #afbaba;
+    font-size: 0.75rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+  }
+
+  .notes {
+    .resolutionDate {
+      margin-top: 0.75rem;
+      font-size: $f6;
+      color: $color-heading-smallest;
+    }
+    .resolutionNote {
+      margin: 0.25rem 0 2rem 0;
+      font-size: $f5;
+    }
+  }
+}

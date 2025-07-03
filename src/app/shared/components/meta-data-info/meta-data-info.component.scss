@@ -1,0 +1,99 @@
+@import 'definitions';
+
+.info-metadata {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+
+  @include composite-responsive-mobile {
+    flex-direction: column-reverse;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .info {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      border: 0;
+      border-radius: 3px 3px 0 0;
+      padding-top: 6px;
+
+      .info-id {
+        margin-bottom: 8px;
+      }
+    }
+
+    .substatus {
+      border-radius: 0 0 3px 3px;
+      height: auto;
+      min-height: calc(1rem + 20px);
+
+      span {
+        white-space: normal;
+      }
+    }
+  }
+  .info {
+    background-color: $color-page-background;
+    border-radius: 3px 0 0 3px;
+    border-right: 1px solid $color-inverted-container-border;
+    color: $color-light-text;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    height: 2rem;
+
+    .info-date {
+      @include type-small-caps();
+      white-space: nowrap;
+    }
+
+    .info-id {
+      @include type-small-caps();
+      white-space: nowrap;
+      margin-right: 15px;
+
+      .number-value {
+        padding-top: 0.3em;
+      }
+    }
+  }
+
+  .substatus {
+    background-color: $color-page-background;
+    border-radius: 0 3px 3px 0;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    height: 2rem;
+
+    span {
+      @include type-heading('5');
+    }
+
+    .edit {
+      top: 0;
+      margin-left: 10px;
+      color: $color-default-text;
+    }
+
+    &.editable {
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        color: $color-edit-text-hover;
+        background-color: $color-edit-background-hover;
+
+        .edit {
+          color: $color-edit-text-hover;
+        }
+
+        & + .info {
+          color: $color-edit-alternate-text-hover;
+          background-color: $color-edit-alternate-background-hover;
+        }
+      }
+    }
+  }
+}

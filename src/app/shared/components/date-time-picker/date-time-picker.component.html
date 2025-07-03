@@ -1,0 +1,51 @@
+<div class="date-time-inputs">
+  <div class="datepicker" *ngIf="mode === 'date'">
+    <kendo-datepicker
+      [format]="'MM/dd/yyyy'"
+      (valueChange)="valueChanged($event)"
+      [min]="min"
+      [max]="max"
+      [placeholder]="placeholderDate"
+      [formatPlaceholder]="{
+        year: 'YYYY',
+        month: 'MM',
+        day: 'DD'
+      }"
+    >
+    </kendo-datepicker>
+  </div>
+
+  <div class="timepicker" *ngIf="mode === 'time'">
+    <kendo-timepicker
+      [format]="'hh:mm a'"
+      (valueChange)="valueChanged($event)"
+      [min]="min"
+      [max]="max"
+      [placeholder]="placeholderTime"
+      [formatPlaceholder]="{ hour: 'HH', minute: 'MM' }"
+    >
+    </kendo-timepicker>
+    <div *ngIf="timezone" class="timezone">{{ timezone }}</div>
+  </div>
+  <div class="datetimepicker" *ngIf="mode === 'datetime'">
+    <kendo-datetimepicker
+      [format]="'MM/dd/yyyy hh:mm a'"
+      [placeholder]="placeholderDateTime"
+      [formatPlaceholder]="{
+        year: 'YYYY',
+        month: 'MM',
+        day: 'DD',
+        hour: 'HH',
+        minute: 'MM'
+      }"
+      formatPlaceholder="formatPattern"
+      [min]="min"
+      [max]="max"
+      (valueChange)="valueChanged($event)"
+      [popupSettings]="popupSettings"
+      [cancelButton]="false"
+    >
+    </kendo-datetimepicker>
+    <div *ngIf="timezone" class="timezone">{{ timezone }}</div>
+  </div>
+</div>

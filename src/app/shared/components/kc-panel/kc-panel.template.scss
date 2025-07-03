@@ -1,0 +1,108 @@
+@import 'definitions';
+
+$panel-width: 554px;
+
+.kc-panel-content {
+  border: solid transparent;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  background-color: #f2f6f6;
+  box-shadow: 0 2px 4px 0 $color-container-shadow;
+  height: auto;
+  width: $panel-width;
+  position: relative;
+  right: 30px;
+  @media only screen and (max-width: $composite-site-min-width) {
+    position: relative;
+    margin: 30px 15px;
+  }
+
+  @media screen and (min-width: 1025px) and (max-width: 1055px) {
+    width: 525px;
+
+    .google-static-map {
+      max-width: 490px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .head {
+    margin: 15px 0 29px 20px;
+    display: flex;
+
+    .location-icon {
+      height: 20px;
+      width: 16px;
+      margin-top: 3px;
+    }
+
+    .folder-icon {
+      margin-top: 6px;
+      display: inline-block;
+      height: 16px;
+      width: 20px;
+    }
+
+    .header-text {
+      margin-left: 15px;
+
+      .header {
+        .location-title,
+        .srs-length {
+          height: 21px;
+          width: 103px;
+          color: $color-default-text;
+          font-family: Biotif;
+          font-size: $f3;
+          font-weight: 900;
+          line-height: 35px;
+        }
+        .srs-length {
+          color: #afbaba;
+          margin-left: 5px;
+        }
+
+        .subLine {
+          height: 1px;
+          width: 555px;
+          background-color: #eaeeee;
+          margin: 15px 0 0 -30px;
+        }
+      }
+
+      .sub-header {
+        color: $color-light-text;
+      }
+    }
+  }
+
+  .kc-panel-footer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .link {
+      @include composite-link();
+
+      span {
+        font-size: $f7;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 1px;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &.all-shown {
+        cursor: default;
+        color: $color-light-text;
+      }
+    }
+  }
+}

@@ -1,0 +1,316 @@
+@import 'definitions';
+
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-request-attachments {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .header {
+    padding: 20px 30px;
+    @media #{$mobile-tablet} {
+      padding: 10px 30px;
+    }
+
+    p {
+      @include type-heading('1');
+      color: $color-activity-header;
+    }
+
+    .header-text-small {
+      @include type-small-caps;
+      color: $color-activity-header;
+      margin: 10px 0;
+    }
+  }
+
+  .attachment-required {
+    color: #afbaba;
+    font-size: 0.75rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+  }
+
+  .attachment-header {
+    margin: 1rem 0 1.5rem;
+    font-size: $f3;
+  }
+
+  .additional-info {
+    border-top: 1px solid $color-activity-divider;
+    border-left: 1px solid $color-activity-divider;
+    padding: 0.5rem;
+    height: 6rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .additional-info::-webkit-input-placeholder {
+    color: $color-container-empty-foreground;
+    font-size: $f4;
+    position: relative;
+    top: -1.5rem;
+  }
+
+  .additional-header {
+    font-size: $f5;
+    color: $color-activity-header;
+  }
+
+  .additional-info-text {
+    margin: 10px 0;
+    width: 100%;
+    height: 6rem;
+  }
+
+  .subheader {
+    border-top: 1px solid $color-activity-divider;
+    padding: 30px 20px 10px;
+
+    h3 {
+      @include type-small-caps();
+      color: $color-activity-header;
+    }
+  }
+
+  .alert-pane {
+    padding: 10px;
+  }
+
+  .scrolling-pane {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+
+    &.scrolled {
+      box-shadow: inset 0 2px 4px 0 $color-scroll-shadow;
+    }
+  }
+
+  app-textarea .textarea-content {
+    label {
+      font-size: $f6;
+      padding: 0;
+      color: $_stone;
+    }
+    textarea {
+      border: 1px solid $_platinum;
+      padding: 10px;
+      margin: 1rem 0 2rem;
+      height: 105px;
+    }
+  }
+
+  .attachment-item {
+    padding: 10px 20px 20px;
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .description {
+      color: $color-activity-header;
+      margin-bottom: 10px;
+    }
+
+    .filesize {
+      @include type-small-caps;
+      color: $color-activity-metadata;
+    }
+
+    .edit {
+      display: inline-block;
+      visibility: hidden;
+      width: 1.5rem;
+      height: 1.5rem;
+      color: $color-utility-icon-inline;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 170px;
+      height: 150px;
+    }
+
+    .content-service-request {
+      width: auto;
+      height: auto;
+    }
+
+    .download {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      min-width: 0; // allows truncated text inside a flex child
+      width: 100%;
+      height: auto;
+    }
+
+    .actions {
+      padding: 20px;
+      z-index: 5;
+    }
+
+    .file-icon {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      .file {
+        width: 5rem;
+        height: 5rem;
+        color: $color-attachments-icon-background;
+      }
+
+      .large-file-icon {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .extension {
+        @include type-small-caps;
+        position: absolute;
+        bottom: 0;
+        height: 2.8rem;
+        width: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $f3;
+        line-height: 1;
+        color: $color-attachments-icon-text;
+      }
+    }
+
+    .file-icon-service-attachment {
+      margin-right: 10px;
+      height: auto;
+      width: auto;
+    }
+
+    $height_thumbnail: 73px;
+    .thumbnail-placeholder {
+      margin-right: 10px;
+      width: 110px;
+      height: $height_thumbnail;
+      min-width: 110px;
+      text-align: center;
+      background-color: $color-container-empty-foreground;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img.thumbnail {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+
+        &.rotate-90 {
+          max-width: $height_thumbnail;
+        }
+
+        &.rotate-270 {
+          max-width: $height_thumbnail;
+        }
+
+        &.flip-and-rotate-90 {
+          max-width: $height_thumbnail;
+        }
+
+        &.flip-and-rotate-270 {
+          max-width: $height_thumbnail;
+        }
+      }
+    }
+
+    .metadata {
+      min-width: 0; // allows truncated text inside a flex child
+
+      .filename {
+        @include type-small-caps;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .timestamp,
+      .uploaded-by {
+        font-size: $f6;
+        color: $color-activity-metadata;
+      }
+    }
+
+    .delete {
+      width: 15px;
+      height: 15px;
+      color: $color-utility-icon;
+    }
+
+    &:hover {
+      .edit {
+        visibility: visible;
+      }
+
+      .file-icon {
+        .file {
+          color: $color-attachments-icon-background-hover;
+        }
+
+        .extension {
+          color: $color-attachments-icon-text-hover;
+        }
+      }
+
+      .content {
+        background-color: $color-attachments-background-hover;
+      }
+
+      .delete {
+        color: $color-utility-icon-hover;
+      }
+    }
+  }
+
+  .download {
+    color: inherit;
+  }
+
+  .upload {
+    box-shadow: 0 -2px 4px 0 $color-scroll-shadow;
+  }
+
+  .attach-on-edit-invoice {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .required-field {
+      font-family: 'OpenSans-Regular', 'Open Sans', sans-serif;
+      font-weight: 1000;
+      font-style: normal;
+      font-size: x-large;
+      color: $_red;
+    }
+  }
+
+  &.client-connector {
+    height: calc(100vh - 171px);
+  }
+}
